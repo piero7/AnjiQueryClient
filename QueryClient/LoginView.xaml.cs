@@ -18,30 +18,18 @@ namespace QueryClient
         public LoginView()
         {
             InitializeComponent();
-            this.DataContext = vm;
 
-            this.main_gd.IsEnabled = true;
-            this.isRunning_pb.Visibility = Visibility.Visible;
-            this.isRunning_pb.IsActive = false;
+            this.DataContext = vm;
 
             #region 消息注册
             //关闭程序
             Messenger.Default.Register<GenericMessage<string>>(this, "close", (msg) => this.CloseApplication());
-            //Messenger.Default.Register<GenericMessage<string>>(this, "start",
-            //   async (msg) =>
-            //    {
-            //       await Dispatcher.InvokeAsync(new System.Action(this.SetRunning),System.Windows.Threading.DispatcherPriority.Send);
-            //    });
-            //Messenger.Default.Register<GenericMessage<string>>(this, "finish",  (msg) => this.SetRunning(false));
-            Messenger.Default.Register<NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>>(this, msg =>
+
+            //开始登陆
+            Messenger.Default.Register<NotificationMessageWithCallback>(this,"start", new System.Action<NotificationMessageWithCallback>(msg =>
             {
-                if (msg.Notification == "start")
-                {
-                    MessageBox.Show("1");
-                    msg.Execute(this.isRunning_pb);
-                    this.password_tb.DeclareChangeBlock();
-                }
-            });
+                Dispatcher.InvokeAsync(new System.Action(()=>msg.Execute()));
+            }));
 
             Messenger.Default.Register<GenericMessage<string>>(this, "errorUserName",
                 (msg) => this.ErrorName(msg.Content));
@@ -50,7 +38,7 @@ namespace QueryClient
                 (msg) => this.ErrorPwd(msg.Content));
 
             Messenger.Default.Register<GenericMessage<SystemMenagerService.LoginUser>>(this, "success",
-                (msg) => MessageBox.Show(msg.Content.RealName));
+                (msg) => ShowMessageAsync("登录成功", "欢迎您 " + msg.Content.RealName));
 
             Messenger.Default.Register<GenericMessage<string>>(this, "systemError",
                 (msg) => ShowMessageAsync("系统错误", msg.Content));

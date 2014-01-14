@@ -3,6 +3,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Command;
 using QueryClient.Model;
+using QueryClient.SystemMenagerService;
+using GalaSoft.MvvmLight.Threading;
 
 namespace QueryClient.ViewModel
 {
@@ -14,6 +16,12 @@ namespace QueryClient.ViewModel
     /// </summary>
     public class LoginViewModel : ViewModelBase
     {
+        public LoginViewModel()
+        {
+            Messenger.Default.Register<GenericMessage<string>>(this, "startLogin", msg => LonginExec());
+
+        }
+
         #region 参数
 
         private string _userName = "";
@@ -32,7 +40,7 @@ namespace QueryClient.ViewModel
                 if (value != this._title)
                     return;
                 this._title = value;
-                RaisePropertyChanged("_title");
+                RaisePropertyChanged("Title");
 
             }
         }
@@ -51,7 +59,7 @@ namespace QueryClient.ViewModel
                     return;
                 }
                 this._userName = value;
-                RaisePropertyChanged("_userName");
+                RaisePropertyChanged("UserName");
             }
         }
 
@@ -85,7 +93,16 @@ namespace QueryClient.ViewModel
                     return;
                 }
                 this._isRunning = value;
-                RaisePropertyChanged("_isRunning");
+                RaisePropertyChanged("IsRunning");
+                RaisePropertyChanged("IsNotRunning");
+            }
+        }
+
+        public bool IsNotRunning
+        {
+            get
+            {
+                return !this._isRunning;
             }
         }
 
@@ -104,8 +121,7 @@ namespace QueryClient.ViewModel
             {
                 this.Password = this.Password.Trim();
                 this.UserName = this.UserName.Trim();
-                //return new RelayCommand(LonginExec, CanLogin);
-                return new RelayCommand(LonginExec, CanLogin);
+                return new RelayCommand(LoginWithChangeStatus, CanLogin);
             }
         }
 
@@ -123,10 +139,10 @@ namespace QueryClient.ViewModel
 
         public void LonginExec()
         {
-//            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "start");
-            Messenger.Default.Send<NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>>(
-                new NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>("start",
-                    res => res.IsActive = true));
+            //            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "start");
+            //Messenger.Default.Send<NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>>(
+            //    new NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>("start",
+            //        res => res.IsActive = true));
             // System.Threading.Thread.Sleep(5000);
             if (string.IsNullOrEmpty(this.UserName))//用户名验证
             {
@@ -138,40 +154,61 @@ namespace QueryClient.ViewModel
                 this.Password = Password.GetHashCode().ToString();
             else
                 this.Password = null;
-            SystemMenagerService.SystemManagerServiceClient smService = new SystemMenagerService.SystemManagerServiceClient();
-            try
-            {
-                smService.Open();
-                var user = smService.Login(this.UserName, this.Password, System.Net.Dns.GetHostName());
+            //SystemMenagerService.SystemManagerServiceClient smService = new SystemMenagerService.SystemManagerServiceClient();
+            //try
+            //{
+            //    smService.Open();
+            //    var user = smService.Login(this.UserName, this.Password, System.Net.Dns.GetHostName());
 
-                if (user != null)//登录成功
-                {
-                    // Debug
-                    // System.Windows.MessageBox.Show("Login seuccess!");
+            //    if (user != null)//登录成功
+            //    {
+            //        // Debug
+            //        // System.Windows.MessageBox.Show("Login seuccess!");
 
-                    Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(user), "success");
-                }
-                else
-                {
-                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-                }
-            }
-            catch (System.Exception ex)
-            {
-                if (ex.Message.Contains("NotFindUsetException"))
-                {
-                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-                }
-                else
-                {
-                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录错误,请联系管理员！\r\n错误描述： " + ex.Message), "systemError");
-                }
-            }
-            finally
-            {
-                smService.Close();
-                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish login"), "finish");
-            }
+            //        Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(user), "success");
+            //    }
+            //    else
+            //    {
+            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+            //    }
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    if (ex.Message.Contains("NotFindUsetException"))
+            //    {
+            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+            //    }
+            //    else
+            //    {
+            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录错误,请联系管理员！\r\n错误描述： " + ex.Message), "systemError");
+            //    }
+            //}
+            //finally
+            //{
+            //    smService.Close();
+            //    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish login"), "finish");
+            //}
+
+            #region Debug
+            System.Threading.Thread.Sleep(2000);
+            if (this.UserName == "admin")
+                Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(new LoginUser { RealName = "success" }), "success");
+            else
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "finish");
+            #endregion
+            IsRunning = false; 
+            return;
+        }
+
+        private void LoginWithChangeStatus()
+        {
+            this.IsRunning = true;
+            Messenger.Default.Send<NotificationMessageWithCallback>(new NotificationMessageWithCallback("", new System.Action(LonginExec)), "start");
+           //await .(new System.Action(() => IsRunning = true));
+            //DispatcherHelper.RunAsync(new System.Action(LonginExec));
+            //this.IsRunning = true;
+            //LonginExec();
         }
 
 
