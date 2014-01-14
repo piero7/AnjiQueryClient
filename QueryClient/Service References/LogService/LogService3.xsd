@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="LogLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All" />
+      <xs:enumeration value="Debug" />
+      <xs:enumeration value="Info" />
+      <xs:enumeration value="Warn" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Fatal" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LogLevel" nillable="true" type="tns:LogLevel" />
+  <xs:simpleType name="QueryMold">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Weixin" />
+      <xs:enumeration value="ShotMsg" />
+      <xs:enumeration value="Web" />
+      <xs:enumeration value="Phone" />
+      <xs:enumeration value="Innner" />
+      <xs:enumeration value="Debug" />
+      <xs:enumeration value="All" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="QueryMold" nillable="true" type="tns:QueryMold" />
+  <xs:simpleType name="QueryResultMold">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All" />
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="已被查询" />
+      <xs:enumeration value="未找到" />
+      <xs:enumeration value="被拦截" />
+      <xs:enumeration value="网络异常" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="QueryResultMold" nillable="true" type="tns:QueryResultMold" />
+  <xs:complexType name="ArrayOfQueryLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryLog" nillable="true" type="tns:QueryLog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryLog" nillable="true" type="tns:ArrayOfQueryLog" />
+  <xs:complexType name="QueryLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Feature" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirmId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Level" type="tns:LogLevel" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mold" type="tns:QueryMold" />
+      <xs:element minOccurs="0" name="OptionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Result" type="tns:QueryResultMold" />
+      <xs:element minOccurs="0" name="SeriesId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryLog" nillable="true" type="tns:QueryLog" />
+</xs:schema>
