@@ -205,10 +205,6 @@ namespace QueryClient.ViewModel
         {
             this.IsRunning = true;
             Messenger.Default.Send<NotificationMessageWithCallback>(new NotificationMessageWithCallback("", new System.Action(LonginExec)), "start");
-           //await .(new System.Action(() => IsRunning = true));
-            //DispatcherHelper.RunAsync(new System.Action(LonginExec));
-            //this.IsRunning = true;
-            //LonginExec();
         }
 
 
