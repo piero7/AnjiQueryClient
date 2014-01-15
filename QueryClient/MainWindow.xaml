@@ -10,8 +10,8 @@
         Height="500"
         Width="700"
         Title="{Binding FormTitle}"
-                       Icon="E:\Projects\AnjiQueryClient\QueryClient\anjilogo.png ">
-    <!--xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"--> 
+        Icon="D:\piero\projects\AnjiQueryClient\QueryClient\anjilogo.png">
+    <!--xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"-->
     <!--DataContext="{Binding Main, Source={StaticResource Locator}}">-->
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>

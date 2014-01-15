@@ -12,7 +12,7 @@ namespace QueryClient
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private MainViewModel model = new MainViewModel(new DataService());
+        private MainViewModel mv = new MainViewModel(new DataService());
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
@@ -20,20 +20,12 @@ namespace QueryClient
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = model;
+            this.DataContext = mv;
             Closing += (s, e) => ViewModelLocator.Cleanup();
 
-
-            Messenger.Default.Register<GenericMessage<string>>(
-               this,
-               "count",
-             async msg =>
-             {
-                 MessageDialogResult ret = await ShowMessageAsync("message", msg.Content, MessageDialogStyle.AffirmativeAndNegative);
-                 //ret.Wait();
-                 await ShowMessageAsync("Request", ret.ToString());
-             });
-
+            #region 消息注册
+            Messenger.Default.Register<GenericMessage<SystemMenagerService.LoginUser>>(this, "loginSuccess", msg => this.mv.User = msg.Content);
+            #endregion
         }
     }
 }

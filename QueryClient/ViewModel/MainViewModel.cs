@@ -16,7 +16,7 @@ namespace QueryClient.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        public LoginView lv = new LoginView();
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -34,17 +34,18 @@ namespace QueryClient.ViewModel
                     WelcomeTitle = item.Title;
                 });
 
-            
             lv.ShowDialog();
         }
 
-
         #region 参数
+
         private readonly IDataService _dataService;
 
         private const string FormTitlePropertyName = "_formTitle";
         private string _formTitle = "查询平台管理客户端";
 
+        public LoginView lv = new LoginView();
+        public SystemMenagerService.LoginUser _user = new SystemMenagerService.LoginUser();
         #endregion
 
         #region 属性
@@ -62,6 +63,19 @@ namespace QueryClient.ViewModel
                 }
                 this._formTitle = value;
                 RaisePropertyChanged(FormTitlePropertyName);
+            }
+        }
+
+        public SystemMenagerService.LoginUser User
+        {
+            get
+            {
+                return this._user;
+            }
+            set
+            {
+                this._user = value;
+                RaisePropertyChanged("User");
             }
         }
         #endregion

@@ -80,6 +80,11 @@
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
+    <Compile Include="Service References\InfoManagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\LogService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +146,28 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\InfoManagerService\InfoManagerService.wsdl" />
+    <None Include="Service References\InfoManagerService\InfoManagerService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\QueryClient.InfoManagerService.Flg.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\InfoManagerService\QueryClient.InfoManagerService.QueryTargetInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\LogService\LogService.wsdl" />
     <None Include="Service References\LogService\LogService.xsd">
       <SubType>Designer</SubType>
@@ -184,6 +211,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\InfoManagerService\" />
     <WCFMetadataStorage Include="Service References\LogService\" />
     <WCFMetadataStorage Include="Service References\SystemMenagerService\" />
   </ItemGroup>
@@ -219,6 +247,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\InfoManagerService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

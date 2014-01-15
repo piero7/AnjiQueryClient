@@ -18,30 +18,32 @@ namespace QueryClient.ViewModel
     {
         public LoginViewModel()
         {
-            Messenger.Default.Register<GenericMessage<string>>(this, "startLogin", msg => LonginExec());
+            //  Messenger.Default.Register<GenericMessage<string>>(this, "startLogin", msg => LonginExec());
 
         }
 
         #region 参数
-
         private string _userName = "";
         private string _password = "";
         public bool _isLogin = false;
-        public string _title = "登录";
+        public string _title;
         public bool _isRunning = false;
+        public bool _isChecking = false;
         #endregion
 
         #region 属性
         public string Title
         {
-            get { return this._title; }
+            get
+            {
+                return this._title;
+            }
             set
             {
-                if (value != this._title)
+                if (value == this._title)
                     return;
                 this._title = value;
                 RaisePropertyChanged("Title");
-
             }
         }
 
@@ -98,6 +100,24 @@ namespace QueryClient.ViewModel
             }
         }
 
+        public bool IsChecking
+        {
+            get
+            {
+                return this._isChecking;
+            }
+            set
+            {
+                if (this._isChecking == value)
+                {
+                    return;
+                }
+                this._isChecking = value;
+                this.IsRunning = value;
+                RaisePropertyChanged("IsChecking");
+            }
+        }
+
         public bool IsNotRunning
         {
             get
@@ -132,9 +152,18 @@ namespace QueryClient.ViewModel
                 return new RelayCommand(CloseExec, CanClose);
             }
         }
+
+        public ICommand TestConn
+        {
+            get
+            {
+                return new RelayCommand(TestConnWithChangeStatus, () => true);
+            }
+        }
         #endregion
 
         #region 方法
+
         #region 登录
 
         public void LonginExec()
@@ -154,50 +183,51 @@ namespace QueryClient.ViewModel
                 this.Password = Password.GetHashCode().ToString();
             else
                 this.Password = null;
-            //SystemMenagerService.SystemManagerServiceClient smService = new SystemMenagerService.SystemManagerServiceClient();
-            //try
-            //{
-            //    smService.Open();
-            //    var user = smService.Login(this.UserName, this.Password, System.Net.Dns.GetHostName());
+            SystemMenagerService.SystemManagerServiceClient smService =
+                new SystemMenagerService.SystemManagerServiceClient();
+            try
+            {
+                smService.Open();
+                var user = smService.Login(this.UserName, this.Password, System.Net.Dns.GetHostName());
 
-            //    if (user != null)//登录成功
-            //    {
-            //        // Debug
-            //        // System.Windows.MessageBox.Show("Login seuccess!");
+                if (user != null)//登录成功
+                {
+                    // Debug
+                    // System.Windows.MessageBox.Show("Login seuccess!");
 
-            //        Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(user), "success");
-            //    }
-            //    else
-            //    {
-            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-            //    }
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    if (ex.Message.Contains("NotFindUsetException"))
-            //    {
-            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-            //    }
-            //    else
-            //    {
-            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录错误,请联系管理员！\r\n错误描述： " + ex.Message), "systemError");
-            //    }
-            //}
-            //finally
-            //{
-            //    smService.Close();
-            //    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish login"), "finish");
-            //}
+                    Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(user), "success");
+                }
+                else
+                {
+                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                if (ex.Message.Contains("NotFindUsetException"))
+                {
+                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+                }
+                else
+                {
+                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录错误,请联系管理员！\r\n错误描述： " + ex.Message), "systemError");
+                }
+            }
+            finally
+            {
+                smService.Close();
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish login"), "finish");
+            }
 
             #region Debug
-            System.Threading.Thread.Sleep(2000);
-            if (this.UserName == "admin")
-                Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(new LoginUser { RealName = "success" }), "success");
-            else
-                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "finish");
+            //System.Threading.Thread.Sleep(2000);
+            //if (this.UserName == "admin")
+            //    Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(new LoginUser { RealName = "success" }), "success");
+            //else
+            //    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+            //Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "finish");
             #endregion
-            IsRunning = false; 
+            IsRunning = false;
             return;
         }
 
@@ -224,6 +254,51 @@ namespace QueryClient.ViewModel
             return true;
         }
         #endregion
+
+        #region 测试连接
+
+        private bool TestConnExec()
+        {
+            SystemMenagerService.SystemManagerServiceClient sm = new SystemMenagerService.SystemManagerServiceClient();
+            LogService.LogServiceClient lv = new LogService.LogServiceClient();
+            InfoManagerService.InfoManagerServiceClient im = new InfoManagerService.InfoManagerServiceClient();
+            try
+            {
+                sm.Open();
+                lv.Open();
+
+                im.Open();
+            }
+            catch (System.Exception)
+            {
+                this.IsChecking = false;
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("fail"), "connFail");
+                return false;
+            }
+            finally
+            {
+                sm.Close();
+                lv.Close();
+
+                im.Close();
+            }
+            this.IsChecking = false;
+            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("success"), "connSuccess");
+            this.Title = "登录";
+            return true;
+        }
+
+        public void TestConnWithChangeStatus()
+        {
+            this.Title = "正在连接服务器...";
+            this.IsChecking = true;
+            Messenger.Default.Send<NotificationMessageWithCallback>(
+               new NotificationMessageWithCallback("正在连接服务器...",
+               new System.Action(() => this.TestConnExec())),
+               "testConn");
+        }
+        #endregion
+
         #endregion
 
     }
