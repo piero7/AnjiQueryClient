@@ -71,14 +71,14 @@ namespace QueryClient
                        {
                            await ShowMessageAsync("登录成功", "欢迎您 " + msg.Content.RealName);
                            Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(
-    new GenericMessage<SystemMenagerService.LoginUser>(msg.Content), "longinSuccess");
-                           this.CloseForm();
+    new GenericMessage<SystemMenagerService.LoginUser>(msg.Content), "loginSuccess");
+                           this.Close();
                        })
                         ));
 
             //系统错误
             Messenger.Default.Register<GenericMessage<string>>(this, "systemError",
-                (msg) => ShowMessageAsync("系统错误", msg.Content));
+                (msg) => DispatcherHelper.CheckBeginInvokeOnUI(new System.Action(async () => await ShowMessageAsync("系统错误", msg.Content))));
 
             //登录失败
             Messenger.Default.Register<GenericMessage<string>>(this, "errorUser",

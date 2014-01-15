@@ -20,21 +20,11 @@ namespace QueryClient.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel()
         {
-            _dataService = dataService;
-            _dataService.GetData(
-                (item, error) =>
-                {
-                    if (error != null)
-                    {
-                        // Report error here
-                        return;
-                    }
-                    WelcomeTitle = item.Title;
-                });
-
-            lv.ShowDialog();
+            this.User = new SystemMenagerService.LoginUser { RealName = "" };
+            //Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录"), "startToLogin");
+            //System.Windows.MessageBox.Show("startToLogin");
         }
 
         #region 参数
@@ -46,6 +36,8 @@ namespace QueryClient.ViewModel
 
         public LoginView lv = new LoginView();
         public SystemMenagerService.LoginUser _user = new SystemMenagerService.LoginUser();
+
+        public bool _isEnable = false;
         #endregion
 
         #region 属性
@@ -66,6 +58,18 @@ namespace QueryClient.ViewModel
             }
         }
 
+        public string RealName
+        {
+            get
+            {
+                return this.User.RealName;
+            }
+            private set
+            {
+                RaisePropertyChanged("RealName");
+            }
+        }
+
         public SystemMenagerService.LoginUser User
         {
             get
@@ -76,6 +80,24 @@ namespace QueryClient.ViewModel
             {
                 this._user = value;
                 RaisePropertyChanged("User");
+                RaisePropertyChanged("RealName");
+            }
+        }
+
+        public bool IsEnable
+        {
+            get
+            {
+                return this._isEnable;
+            }
+            set
+            {
+                if (this._isEnable == value)
+                {
+                    return;
+                }
+                this._isEnable = value;
+                RaisePropertyChanged("IsEnable");
             }
         }
         #endregion

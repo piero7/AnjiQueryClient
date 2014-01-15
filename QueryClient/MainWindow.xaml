@@ -10,10 +10,12 @@
         Height="500"
         Width="700"
         Title="{Binding FormTitle}"
-        Icon="D:\piero\projects\AnjiQueryClient\QueryClient\anjilogo.png">
+       
+         >
+    <!--Ico="E:\Projects\AnjiQueryClient\QueryClient\Resources\anjilogo.png"-->
     <!--xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"-->
     <!--DataContext="{Binding Main, Source={StaticResource Locator}}">-->
-    <Grid x:Name="LayoutRoot">
+    <Grid Name="LayoutRoot"  IsEnabled="{Binding IsEnable,NotifyOnSourceUpdated=True,Mode=TwoWay}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -43,9 +45,10 @@
                    Width ="100"
                    Height="100"/>-->
 
-            <Label Content ="qwe" Grid.Column ="0" Grid.Row ="0"/>
+            <Label Content ="qwe" Grid.Column ="0" Grid.Row ="0" />
             <Label Content="{Binding LabelCon,  Mode=TwoWay}"   Grid.Column ="0" Grid.Row="1"  />
             <Button Command ="{Binding GetNewLabelCon}" Content ="Click me" Grid.Row="2" Grid.Column="0" />
+            <Label Content="{Binding RealName,NotifyOnTargetUpdated=True}" Grid.Row="3" Grid.Column="0"/>
         </Grid>
         <Controls:MetroContentControl  Content="MetroContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
 
