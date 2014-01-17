@@ -6,52 +6,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.ignore.com"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+        xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours"
         mc:Ignorable="d ignore"
         Height="500"
         Width="700"
         Title="{Binding FormTitle}"
-       
+        ShowIconOnTitleBar="True"
+       Icon="D:\piero\projects\AnjiQueryClient\QueryClient\Resources\anjilogo64.ico"
          >
-    <!--Ico="E:\Projects\AnjiQueryClient\QueryClient\Resources\anjilogo.png"-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <!--xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"-->
     <!--DataContext="{Binding Main, Source={StaticResource Locator}}">-->
+
+    <Controls:MetroWindow.WindowCommands>
+        <Controls:WindowCommands>
+            <Button Content ="{Binding WelcomeTitle, NotifyOnSourceUpdated=True,Mode=TwoWay}" Width ="auto" Foreground="White" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Text="设置" Foreground="White" Margin="2,2,2,2" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.WindowCommands>
+
     <Grid Name="LayoutRoot"  IsEnabled="{Binding IsEnable,NotifyOnSourceUpdated=True,Mode=TwoWay}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid Width="100" HorizontalAlignment="Left" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <!--<Menu Grid.Row="0" Grid.ColumnSpan="3">
-            <MenuItem Header="Test">
-                <MenuItem Header="Update Artist" Command="{Binding UpdateAlbumArtists}" />
-            </MenuItem>
-        </Menu>-->
-            <!--<TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" 
-                   Grid.Column ="1"
-                   Grid.Row="1"
-                   Width ="100"
-                   Height="100"/>-->
-
-            <Label Content ="qwe" Grid.Column ="0" Grid.Row ="0" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Margin="20,0,0,0"  Style="{DynamicResource MetroCircleButtonStyle}" Width="50"  ToolTip="日志管理" Click=" Button_Click_1"  >
+                <!--<Rectangle Width="60" Height="60" Margin="-6,-6,0,0">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="Black" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Resources/settings.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>-->
+                <Rectangle Fill="Black"  Width="20" Height="20" Margin="2,0,0,0">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{StaticResource appbar_page_onenote}" Stretch="Fill" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+            <Button Margin="20,0,0,0"  Style="{DynamicResource MetroCircleButtonStyle}" Width="56"  ToolTip="信息管理" Click="Button_Click_2">
+                <Rectangle Fill="Black"  Width="20" Height="20" Margin="2,0,0,0">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{StaticResource appbar_page_onenote}" Stretch="Fill" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+        </StackPanel>
+        <Controls:MetroContentControl Content="MetroContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Name="mainControl" Height="296" Margin="0,0,0,-279" Width="682">
+        </Controls:MetroContentControl>
+        <!--<Label Content ="qwe" Grid.Column ="0" Grid.Row ="1" />
             <Label Content="{Binding LabelCon,  Mode=TwoWay}"   Grid.Column ="0" Grid.Row="1"  />
             <Button Command ="{Binding GetNewLabelCon}" Content ="Click me" Grid.Row="2" Grid.Column="0" />
-            <Label Content="{Binding RealName,NotifyOnTargetUpdated=True}" Grid.Row="3" Grid.Column="0"/>
-        </Grid>
-        <Controls:MetroContentControl  Content="MetroContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
-
-
+            <Label Content="{Binding RealName,NotifyOnTargetUpdated=True}" Grid.Row="3" Grid.Column="0"/>-->
+        <Controls:Flyout Grid.Row="3" Margin="0,0,0,0" IsPinnable="True"  Name="testfo">
+            <Label Content="asd"></Label>
+        </Controls:Flyout>
     </Grid>
 </Controls:MetroWindow  >

@@ -67,6 +67,7 @@ namespace QueryClient.ViewModel
             private set
             {
                 RaisePropertyChanged("RealName");
+                RaisePropertyChanged("WelcomeTitle");
             }
         }
 
@@ -81,6 +82,7 @@ namespace QueryClient.ViewModel
                 this._user = value;
                 RaisePropertyChanged("User");
                 RaisePropertyChanged("RealName");
+                RaisePropertyChanged("WelcomeTitle");
             }
         }
 
@@ -98,6 +100,35 @@ namespace QueryClient.ViewModel
                 }
                 this._isEnable = value;
                 RaisePropertyChanged("IsEnable");
+            }
+        }
+
+        public string WelcomeTitle
+        {
+            get
+            {
+                string sayHellow;
+                if (System.DateTime.Now.Hour < 12)
+                {
+                    sayHellow = "上午好";
+                }
+                else if (DateTime.Now.Hour < 14)
+                {
+                    sayHellow = "中午好";
+                }
+                else if (DateTime.Now.Hour < 18)
+                {
+                    sayHellow = "下午好";
+                }
+                else
+                {
+                    sayHellow = "晚上好";
+                }
+                return string.Format("{0},{1}!", RealName, sayHellow);
+            }
+            set
+            {
+                RaisePropertyChanged("WelcomeTitle");
             }
         }
         #endregion
@@ -118,28 +149,6 @@ namespace QueryClient.ViewModel
         private string _welcomeTitle = string.Empty;
         private int _count = 0;
 
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public string WelcomeTitle
-        {
-            get
-            {
-                return _welcomeTitle;
-            }
-
-            set
-            {
-                if (_welcomeTitle == value)
-                {
-                    return;
-                }
-
-                _welcomeTitle = value;
-                RaisePropertyChanged("WelcomeTitle");
-            }
-        }
 
         public string LabelCon
         {

@@ -173,59 +173,59 @@ namespace QueryClient.ViewModel
             //    new NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>("start",
             //        res => res.IsActive = true));
             // System.Threading.Thread.Sleep(5000);
-            //if (string.IsNullOrEmpty(this.UserName))//用户名验证
-            //{
-            //    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("用户名不能为空！"), "errorUserName");
-            //    this._isLogin = false;
-            //}
+            if (string.IsNullOrEmpty(this.UserName))//用户名验证
+            {
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("用户名不能为空！"), "errorUserName");
+                this._isLogin = false;
+            }
 
-            //if (!string.IsNullOrEmpty(this.Password))
-            //    this.Password = Password.GetHashCode().ToString();
-            //else
-            //    this.Password = null;
-            //SystemMenagerService.SystemManagerServiceClient smService =
-            //    new SystemMenagerService.SystemManagerServiceClient();
-            //try
-            //{
-            //    smService.Open();
-            //    var user = smService.Login(this.UserName, this.Password, System.Net.Dns.GetHostName());
+            if (!string.IsNullOrEmpty(this.Password))
+                this.Password = Password.GetHashCode().ToString();
+            else
+                this.Password = null;
+            SystemMenagerService.SystemManagerServiceClient smService =
+                new SystemMenagerService.SystemManagerServiceClient();
+            try
+            {
+                smService.Open();
+                var user = smService.Login(this.UserName, this.Password, System.Net.Dns.GetHostName());
 
-            //    if (user != null)//登录成功
-            //    {
-            //        // Debug
-            //        // System.Windows.MessageBox.Show("Login seuccess!");
+                if (user != null)//登录成功
+                {
+                    // Debug
+                    // System.Windows.MessageBox.Show("Login seuccess!");
 
-            //        Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(user), "success");
-            //    }
-            //    else
-            //    {
-            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-            //    }
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    if (ex.Message.Contains("NotFindUsetException"))
-            //    {
-            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-            //    }
-            //    else
-            //    {
-            //        Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录错误,请联系管理员！\r\n错误描述： " + ex.Message), "systemError");
-            //    }
-            //}
-            //finally
-            //{
-            //    smService.Close();
-            //    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish login"), "finish");
-            //}
+                    Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(user), "success");
+                }
+                else
+                {
+                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                if (ex.Message.Contains("NotFindUsetException"))
+                {
+                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+                }
+                else
+                {
+                    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("登录错误,请联系管理员！\r\n错误描述： " + ex.Message), "systemError");
+                }
+            }
+            finally
+            {
+                smService.Close();
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish login"), "finish");
+            }
 
             #region Debug
-            System.Threading.Thread.Sleep(2000);
-            if (this.UserName == "admin")
-                Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(new LoginUser { RealName = "success" }), "success");
-            else
-                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
-            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "finish");
+            //System.Threading.Thread.Sleep(2000);
+            //if (this.UserName == "admin")
+            //    Messenger.Default.Send<GenericMessage<SystemMenagerService.LoginUser>>(new GenericMessage<SystemMenagerService.LoginUser>(new LoginUser { RealName = "success" }), "success");
+            //else
+            //    Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("账户或者密码错误！"), "errorUser");
+            //Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>(""), "finish");
             #endregion
             IsRunning = false;
             this.Title = "登录";

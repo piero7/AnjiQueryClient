@@ -4,6 +4,7 @@ using MahApps.Metro.Controls;
 
 using QueryClient.Model;
 using GalaSoft.MvvmLight.Messaging;
+using MahApps.Metro;
 
 namespace QueryClient
 {
@@ -24,6 +25,7 @@ namespace QueryClient
             Closing += (s, e) => { ViewModelLocator.Cleanup(); Application.Current.Shutdown(); };
 
             this.Loaded += (s, e) => vm.lv.ShowDialog();
+            MahApps.Metro.Behaviours.ReloadBehavior.SetOnSelectedTabChanged(this.mainControl, false);
             //this.vm = new MainViewModel();
             #region 消息注册
 
@@ -36,6 +38,19 @@ namespace QueryClient
 
 
             #endregion
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var newc = new LogControl();
+            this.mainControl.Content = newc;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            var newb = new InfoControl();
+            this.mainControl.Content = newb;
         }
     }
 }
