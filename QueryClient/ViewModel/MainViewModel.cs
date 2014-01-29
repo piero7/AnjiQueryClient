@@ -29,7 +29,6 @@ namespace QueryClient.ViewModel
 
         #region 参数
 
-        private readonly IDataService _dataService;
 
         private const string FormTitlePropertyName = "_formTitle";
         private string _formTitle = "查询平台管理客户端";
@@ -38,6 +37,8 @@ namespace QueryClient.ViewModel
         public SystemMenagerService.LoginUser _user = new SystemMenagerService.LoginUser();
 
         public bool _isEnable = false;
+
+        private string iconPath = "";
         #endregion
 
         #region 属性
@@ -132,8 +133,10 @@ namespace QueryClient.ViewModel
             }
         }
         #endregion
+
         #region 命令
         #endregion
+
         #region  方法
 
         #endregion

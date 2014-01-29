@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using QueryClient.Model;
 using QueryClient.SystemMenagerService;
 using GalaSoft.MvvmLight.Threading;
+using System.Threading.Tasks;
 
 namespace QueryClient.ViewModel
 {
@@ -259,17 +260,32 @@ namespace QueryClient.ViewModel
 
         #region 测试连接
 
-        private bool TestConnExec()
+
+        async private Task<bool> TestConnExec()
         {
             SystemMenagerService.SystemManagerServiceClient sm = new SystemMenagerService.SystemManagerServiceClient();
             LogService.LogServiceClient lv = new LogService.LogServiceClient();
             InfoManagerService.InfoManagerServiceClient im = new InfoManagerService.InfoManagerServiceClient();
+
+            bool testConnRet = false;
+
             try
             {
-                sm.Open();
-                lv.Open();
+                var ran = new System.Random();
+                var token = ran.Next(int.MaxValue).ToString();
 
+                sm.Open();
+                Task<int> testsm = sm.TestConnAsync(token);
+                lv.Open();
+                Task<int> testLv = lv.TestConnAsync(token);
                 im.Open();
+                Task<int> testIm = im.TestConnAsync(token);
+
+                int smRet = await testsm;
+                int imRet = await testIm;
+                int lvRet = await testLv;
+
+                testConnRet = (smRet == token.GetHashCode()) || (smRet == imRet) || (smRet == lvRet);
             }
             catch (System.Exception)
             {
@@ -281,11 +297,13 @@ namespace QueryClient.ViewModel
             {
                 sm.Close();
                 lv.Close();
-
                 im.Close();
             }
             this.IsChecking = false;
-            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("success"), "connSuccess");
+            if (testConnRet)
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("success"), "textConn");
+            else
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("fail"), "testConn");
             this.Title = "登录";
             return true;
         }

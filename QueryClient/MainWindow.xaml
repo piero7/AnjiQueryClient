@@ -12,7 +12,7 @@
         Width="700"
         Title="{Binding FormTitle}"
         ShowIconOnTitleBar="True"
-       Icon="D:\piero\projects\AnjiQueryClient\QueryClient\Resources\anjilogo64.ico"
+       Icon=""
          >
     <Window.Resources>
         <ResourceDictionary>

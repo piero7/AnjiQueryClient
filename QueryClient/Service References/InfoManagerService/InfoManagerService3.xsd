@@ -96,6 +96,17 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="QueryMold" nillable="true" type="tns:QueryMold" />
+  <xs:complexType name="Product">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryTarget">
+        <xs:sequence>
+          <xs:element name="_x003C_SeriesId_x003E_k__BackingField" nillable="true" type="xs:int" />
+          <xs:element name="_x003C_Series_x003E_k__BackingField" nillable="true" type="tns:Series" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Product" nillable="true" type="tns:Product" />
   <xs:complexType name="Series">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:QueryTarget">
@@ -130,15 +141,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
-  <xs:complexType name="Product">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:QueryTarget">
-        <xs:sequence>
-          <xs:element name="_x003C_SeriesId_x003E_k__BackingField" nillable="true" type="xs:int" />
-          <xs:element name="_x003C_Series_x003E_k__BackingField" nillable="true" type="tns:Series" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Product" nillable="true" type="tns:Product" />
 </xs:schema>
