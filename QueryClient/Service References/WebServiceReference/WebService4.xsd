@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryCilent" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryCilent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7770/WebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/QueryService" />
+  <xs:import schemaLocation="http://localhost:7770/WebService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" />
+  <xs:complexType name="QueryPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Feature" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/QueryService" minOccurs="0" name="InfoList" nillable="true" type="q1:ArrayOfShowenInfo" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" minOccurs="0" name="QueryMold" type="q2:QueryMold" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryPackage" nillable="true" type="tns:QueryPackage" />
+</xs:schema>

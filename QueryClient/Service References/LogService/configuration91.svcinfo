@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="p4aqpCMa5q6yLSyb3YnZ+DoSeAY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="+ABHcxEFB7wDBA9TuQxDbEB54j8=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ILogService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ILogService" contract="LogService.ILogService" bindingType="basicHttpBinding" address="http://10.0.0.122:7777/AdminService/LogService.svc" bindingConfiguration="BasicHttpBinding_ILogService">
+    <endpoint name="BasicHttpBinding_ILogService" contract="LogService.ILogService" bindingType="basicHttpBinding" address="http://localhost:7777/AdminService/LogService.svc" bindingConfiguration="BasicHttpBinding_ILogService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://10.0.0.122:7777/AdminService/LogService.svc</serializedValue>
+          <serializedValue>http://localhost:7777/AdminService/LogService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

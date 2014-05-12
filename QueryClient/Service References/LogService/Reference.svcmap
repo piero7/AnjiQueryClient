@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.0.0.122:7777/AdminService/LogService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:7777/AdminService/LogService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LogService.xsd" MetadataType="Schema" ID="a2be95b1-8dc7-4b2b-8f3f-895bc7211469" SourceId="1" SourceUrl="http://10.0.0.122:7777/AdminService/LogService.svc?xsd=xsd2" />
-    <MetadataFile FileName="LogService.disco" MetadataType="Disco" ID="68829388-279f-4a04-8708-3e791a5302c7" SourceId="1" SourceUrl="http://10.0.0.122:7777/AdminService/LogService.svc?disco" />
-    <MetadataFile FileName="LogService1.xsd" MetadataType="Schema" ID="52f1b0e3-2180-4506-b3ec-a16f55671259" SourceId="1" SourceUrl="http://10.0.0.122:7777/AdminService/LogService.svc?xsd=xsd1" />
-    <MetadataFile FileName="LogService.wsdl" MetadataType="Wsdl" ID="6f504608-b693-4adc-a94f-a4e5993fc8c8" SourceId="1" SourceUrl="http://10.0.0.122:7777/AdminService/LogService.svc?wsdl" />
-    <MetadataFile FileName="LogService2.xsd" MetadataType="Schema" ID="1f265c6f-a7fb-40ec-946c-82161d758d03" SourceId="1" SourceUrl="http://10.0.0.122:7777/AdminService/LogService.svc?xsd=xsd0" />
-    <MetadataFile FileName="LogService3.xsd" MetadataType="Schema" ID="5b5e2af0-ca7d-4d6b-b5bd-ca3b21dfb201" SourceId="1" SourceUrl="http://10.0.0.122:7777/AdminService/LogService.svc?xsd=xsd3" />
+    <MetadataFile FileName="LogService1.disco" MetadataType="Disco" ID="39859077-6fe9-4813-a34a-dc73c0505f74" SourceId="1" SourceUrl="http://localhost:7777/AdminService/LogService.svc?disco" />
+    <MetadataFile FileName="LogService4.xsd" MetadataType="Schema" ID="1d9fe984-f269-4a63-8201-69c44b39b2ce" SourceId="1" SourceUrl="http://localhost:7777/AdminService/LogService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LogService41.xsd" MetadataType="Schema" ID="47aa65dc-ea8d-42ad-9d4f-515cfa730ccc" SourceId="1" SourceUrl="http://localhost:7777/AdminService/LogService.svc?xsd=xsd3" />
+    <MetadataFile FileName="LogService42.xsd" MetadataType="Schema" ID="403c50f0-134b-47cc-bcb7-9aeb05fd8ece" SourceId="1" SourceUrl="http://localhost:7777/AdminService/LogService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LogService1.wsdl" MetadataType="Wsdl" ID="46ccecb3-7706-4930-aa16-11abd370588c" SourceId="1" SourceUrl="http://localhost:7777/AdminService/LogService.svc?wsdl" />
+    <MetadataFile FileName="LogService43.xsd" MetadataType="Schema" ID="98115810-7f9d-4ab1-87ae-591df1b0c7bb" SourceId="1" SourceUrl="http://localhost:7777/AdminService/LogService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

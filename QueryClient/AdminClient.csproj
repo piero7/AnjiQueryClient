@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F5E400B-E12A-494D-B19C-ED45C0E0C8CD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QueryClient</RootNamespace>
+    <AssemblyName>QueryClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF45">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF45">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net45\GalaSoft.MvvmLight.WPF45.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.11.0.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\MahApps.Metro.0.11.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helper\Guard.cs" />
+    <Compile Include="Service References\PhoneServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WebServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WeixinServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ConfigViewModel.cs" />
+    <Compile Include="Views\ConfigView.xaml.cs">
+      <DependentUpon>ConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangePasswordView.xaml.cs">
+      <DependentUpon>ChangePasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Helper.cs" />
+    <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="ViewModel\ChagePasswordViewModel.cs" />
+    <Compile Include="ViewModel\Flg\AddFlgViewModel.cs" />
+    <Compile Include="ViewModel\Flg\EditFlgViewModel.cs" />
+    <Compile Include="ViewModel\Flg\FlgViewModel.cs" />
+    <Compile Include="Views\Flg\AddFlgControl.xaml.cs">
+      <DependentUpon>AddFlgControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Flg\EditFlgControl.xaml.cs">
+      <DependentUpon>EditFlgControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Flg\FlgView.xaml.cs">
+      <DependentUpon>FlgView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Info\EditInfoViewModel.cs" />
+    <Compile Include="ViewModel\Info\EditProductViewModel.cs" />
+    <Compile Include="ViewModel\Info\EditFirmViewModel.cs" />
+    <Compile Include="ViewModel\Info\EditSeriesViewModel.cs" />
+    <Compile Include="Views\FlyOuts\Product\EditProductControl.xaml.cs">
+      <DependentUpon>EditProductControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyOuts\Product\EditSeriesControl.xaml.cs">
+      <DependentUpon>EditSeriesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Info\AddFirmViewModel.cs" />
+    <Compile Include="ViewModel\Info\FirmInfoViewModel.cs" />
+    <Compile Include="ViewModel\Info\ProjectArgViewModel.cs" />
+    <Compile Include="ViewModel\Info\SeriesInfoViewModel.cs" />
+    <Compile Include="Views\FlyOuts\Product\AddProControl.xaml.cs">
+      <DependentUpon>AddProControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyOuts\Product\AddSerControl.xaml.cs">
+      <DependentUpon>AddSerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyOuts\Product\EditFirmControl.xaml.cs">
+      <DependentUpon>EditFirmControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyOuts\Product\FirmArgsControl.xaml.cs">
+      <DependentUpon>FirmArgsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyOuts\Product\ProductArgControl.xaml.cs">
+      <DependentUpon>ProductArgControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyOuts\Product\SeriesArgsControl.xaml.cs">
+      <DependentUpon>SeriesArgsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Info\ProductInfoViewModel.cs" />
+    <Compile Include="Views\FlyOuts\Log\SystemLogArgsForm.xaml.cs">
+      <DependentUpon>SystemLogArgsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Log\SystemLogArgsViewModel.cs" />
+    <Compile Include="Views\FlyOuts\Log\QueryLogArgsForm.xaml.cs">
+      <DependentUpon>QueryLogArgsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Log\QueryLogArgsViewModel.cs" />
+    <Compile Include="ViewModel\Log\QueryLogViewModel.cs" />
+    <Compile Include="Views\FlyOuts\Product\AddFirmControl.xaml.cs">
+      <DependentUpon>AddFirmControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogControl.xaml.cs">
+      <DependentUpon>LogControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataItem.cs" />
+    <Compile Include="Model\DataService.cs" />
+    <Compile Include="Model\IDataService.cs" />
+    <Compile Include="ViewModel\Log\LogViewModel.cs" />
+    <Compile Include="Views\ProductInfo.xaml.cs">
+      <DependentUpon>ProductInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\InfoManagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LogService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SystemMenagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="Views\ConfigView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangePasswordView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Flg\AddFlgControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Flg\EditFlgControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Flg\FlgView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\EditProductControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\EditSeriesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\AddProControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\AddSerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\EditFirmControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\FirmArgsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\ProductArgControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\SeriesArgsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FlyOuts\Log\SystemLogArgsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Log\QueryLogArgsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyOuts\Product\AddFirmControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ProductInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Skins\MainSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\PhoneServiceReference\PhoneService.wsdl" />
+    <None Include="Service References\PhoneServiceReference\PhoneService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PhoneServiceReference\PhoneService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SystemMenagerService\SystemManagerService1.wsdl" />
+    <None Include="Service References\SystemMenagerService\SystemManagerService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SystemMenagerService\SystemManagerService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SystemMenagerService\SystemManagerService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SystemMenagerService\SystemManagerService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceReference\QueryClient.WebServiceReference.QueryPackage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceReference\WebService.wsdl" />
+    <None Include="Service References\WebServiceReference\WebService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceReference\WebService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceReference\WebService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceReference\WebService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceReference\WebService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebServiceReference\WebService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WeixinServiceReference\WeixinService1.wsdl" />
+    <Resource Include="Resources\Entypo.ttf" />
+    <None Include="Service References\InfoManagerService\InfoManagerService1.wsdl" />
+    <None Include="Service References\InfoManagerService\InfoManagerService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\InfoManagerService54.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InfoManagerService\QueryClient.InfoManagerService.Flg.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\InfoManagerService\QueryClient.InfoManagerService.QueryTargetInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LogService\LogService1.wsdl" />
+    <None Include="Service References\LogService\LogService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\QueryClient.LogService.QueryLog.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LogService\QueryClient.LogService.SystemLogInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemMenagerService\QueryClient.SystemMenagerService.LoginUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\anjilogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\InfoManagerService\" />
+    <WCFMetadataStorage Include="Service References\LogService\" />
+    <WCFMetadataStorage Include="Service References\PhoneServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SystemMenagerService\" />
+    <WCFMetadataStorage Include="Service References\WebServiceReference\" />
+    <WCFMetadataStorage Include="Service References\WeixinServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SystemMenagerService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SystemMenagerService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SystemMenagerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\InfoManagerService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\anjilogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\anjilogo64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogService\LogService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SystemMenagerService\SystemManagerService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceReference\WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PhoneServiceReference\PhoneService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PhoneServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PhoneServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PhoneServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WeixinServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WeixinServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WeixinServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\Guard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WeixinServiceReference\WeixinService1.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

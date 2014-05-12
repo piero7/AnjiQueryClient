@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://anjismart.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://anjismart.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://anjismart.com/">
+      <s:element name="TestConn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="text" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestConnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestConnResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Query">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="feature" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TestConnSoapIn">
+    <wsdl:part name="parameters" element="tns:TestConn" />
+  </wsdl:message>
+  <wsdl:message name="TestConnSoapOut">
+    <wsdl:part name="parameters" element="tns:TestConnResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuerySoapIn">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="QuerySoapOut">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestConnHttpGetIn">
+    <wsdl:part name="text" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestConnHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="feature" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestConnHttpPostIn">
+    <wsdl:part name="text" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestConnHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="feature" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="WeixinServiceSoap">
+    <wsdl:operation name="TestConn">
+      <wsdl:input message="tns:TestConnSoapIn" />
+      <wsdl:output message="tns:TestConnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:input message="tns:QuerySoapIn" />
+      <wsdl:output message="tns:QuerySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WeixinServiceHttpGet">
+    <wsdl:operation name="TestConn">
+      <wsdl:input message="tns:TestConnHttpGetIn" />
+      <wsdl:output message="tns:TestConnHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:input message="tns:QueryHttpGetIn" />
+      <wsdl:output message="tns:QueryHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WeixinServiceHttpPost">
+    <wsdl:operation name="TestConn">
+      <wsdl:input message="tns:TestConnHttpPostIn" />
+      <wsdl:output message="tns:TestConnHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:input message="tns:QueryHttpPostIn" />
+      <wsdl:output message="tns:QueryHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WeixinServiceSoap" type="tns:WeixinServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestConn">
+      <soap:operation soapAction="http://anjismart.com/TestConn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap:operation soapAction="http://anjismart.com/Query" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeixinServiceSoap12" type="tns:WeixinServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestConn">
+      <soap12:operation soapAction="http://anjismart.com/TestConn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap12:operation soapAction="http://anjismart.com/Query" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeixinServiceHttpGet" type="tns:WeixinServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="TestConn">
+      <http:operation location="/TestConn" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <http:operation location="/Query" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeixinServiceHttpPost" type="tns:WeixinServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="TestConn">
+      <http:operation location="/TestConn" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <http:operation location="/Query" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WeixinService">
+    <wsdl:port name="WeixinServiceSoap" binding="tns:WeixinServiceSoap">
+      <soap:address location="http://10.0.0.7:7770/WeixinService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WeixinServiceSoap12" binding="tns:WeixinServiceSoap12">
+      <soap12:address location="http://10.0.0.7:7770/WeixinService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WeixinServiceHttpGet" binding="tns:WeixinServiceHttpGet">
+      <http:address location="http://10.0.0.7:7770/WeixinService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WeixinServiceHttpPost" binding="tns:WeixinServiceHttpPost">
+      <http:address location="http://10.0.0.7:7770/WeixinService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

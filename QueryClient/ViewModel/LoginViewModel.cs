@@ -21,6 +21,7 @@ namespace QueryClient.ViewModel
         {
             //  Messenger.Default.Register<GenericMessage<string>>(this, "startLogin", msg => LonginExec());
 
+
         }
 
         #region 参数
@@ -174,6 +175,8 @@ namespace QueryClient.ViewModel
             //    new NotificationMessageAction<MahApps.Metro.Controls.ProgressRing>("start",
             //        res => res.IsActive = true));
             // System.Threading.Thread.Sleep(5000);
+            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("update text of textbox "), "update");
+
             if (string.IsNullOrEmpty(this.UserName))//用户名验证
             {
                 Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("用户名不能为空！"), "errorUserName");
@@ -181,9 +184,13 @@ namespace QueryClient.ViewModel
             }
 
             if (!string.IsNullOrEmpty(this.Password))
+            {
                 this.Password = Password.GetHashCode().ToString();
+            }
             else
+            {
                 this.Password = null;
+            }
             SystemMenagerService.SystemManagerServiceClient smService =
                 new SystemMenagerService.SystemManagerServiceClient();
             try
@@ -268,7 +275,7 @@ namespace QueryClient.ViewModel
             InfoManagerService.InfoManagerServiceClient im = new InfoManagerService.InfoManagerServiceClient();
 
             bool testConnRet = false;
-
+            string lToken = System.Configuration.ConfigurationManager.AppSettings["localToken"];
             try
             {
                 var ran = new System.Random();
@@ -285,7 +292,7 @@ namespace QueryClient.ViewModel
                 int imRet = await testIm;
                 int lvRet = await testLv;
 
-                testConnRet = (smRet == token.GetHashCode()) || (smRet == imRet) || (smRet == lvRet);
+                testConnRet = (smRet == (token+lToken).GetHashCode()) || (smRet == imRet) || (smRet == lvRet);
             }
             catch (System.Exception)
             {
@@ -293,6 +300,7 @@ namespace QueryClient.ViewModel
                 Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("fail"), "connFail");
                 return false;
             }
+
             finally
             {
                 sm.Close();
@@ -301,9 +309,9 @@ namespace QueryClient.ViewModel
             }
             this.IsChecking = false;
             if (testConnRet)
-                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("success"), "textConn");
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("success"), "loginSuccess");
             else
-                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("fail"), "testConn");
+                Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("fail"), "connFail");
             this.Title = "登录";
             return true;
         }

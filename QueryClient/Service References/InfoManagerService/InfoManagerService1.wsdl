@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InfoManagerService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7778/InfoManagerService.svc?xsd=xsd2" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7778/InfoManagerService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7778/InfoManagerService.svc?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.QueryModel" />
+      <xsd:import schemaLocation="http://localhost:7778/InfoManagerService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/QueryService" />
+      <xsd:import schemaLocation="http://localhost:7778/InfoManagerService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IInfoManagerService_GetChildTargets1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildTargets1" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetChildTargets1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildTargets1Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetChildTargets2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildTargets2" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetChildTargets2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildTargets2Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetParentTarget_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentTarget" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetParentTarget_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentTargetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetParentTarget1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentTarget1" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetParentTarget1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentTarget1Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetSingleTargetInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleTargetInfo" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetSingleTargetInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleTargetInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetSingleTargetInfo1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleTargetInfo1" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetSingleTargetInfo1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleTargetInfo1Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetTargetInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTargetInfo" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetTargetInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTargetInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNames" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetTargetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTargetList" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetTargetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTargetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetTargetList1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTargetList1" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetTargetList1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTargetList1Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_UpdateTarget_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTarget" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_UpdateTarget_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTargetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs1" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs1Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs2" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs2Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs3_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs3" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs3Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs4_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs4" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_GetFlgs4_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlgs4Response" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_UpdateFlg_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFlg" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_UpdateFlg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFlgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_AddFlg_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlg" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_AddFlg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_TestConn_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConn" />
+  </wsdl:message>
+  <wsdl:message name="IInfoManagerService_TestConn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IInfoManagerService">
+    <wsdl:operation name="GetChildTargets1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetChildTargets1" message="tns:IInfoManagerService_GetChildTargets1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetChildTargets1Response" message="tns:IInfoManagerService_GetChildTargets1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildTargets2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetChildTargets2" message="tns:IInfoManagerService_GetChildTargets2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetChildTargets2Response" message="tns:IInfoManagerService_GetChildTargets2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParentTarget">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetParentTarget" message="tns:IInfoManagerService_GetParentTarget_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetParentTargetResponse" message="tns:IInfoManagerService_GetParentTarget_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParentTarget1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetParentTarget1" message="tns:IInfoManagerService_GetParentTarget1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetParentTarget1Response" message="tns:IInfoManagerService_GetParentTarget1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTargetInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetSingleTargetInfo" message="tns:IInfoManagerService_GetSingleTargetInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetSingleTargetInfoResponse" message="tns:IInfoManagerService_GetSingleTargetInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTargetInfo1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetSingleTargetInfo1" message="tns:IInfoManagerService_GetSingleTargetInfo1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetSingleTargetInfo1Response" message="tns:IInfoManagerService_GetSingleTargetInfo1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetTargetInfo" message="tns:IInfoManagerService_GetTargetInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetTargetInfoResponse" message="tns:IInfoManagerService_GetTargetInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetNames" message="tns:IInfoManagerService_GetNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetNamesResponse" message="tns:IInfoManagerService_GetNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetTargetList" message="tns:IInfoManagerService_GetTargetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetTargetListResponse" message="tns:IInfoManagerService_GetTargetList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetList1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetTargetList1" message="tns:IInfoManagerService_GetTargetList1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetTargetList1Response" message="tns:IInfoManagerService_GetTargetList1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTarget">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/UpdateTarget" message="tns:IInfoManagerService_UpdateTarget_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/UpdateTargetResponse" message="tns:IInfoManagerService_UpdateTarget_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs" message="tns:IInfoManagerService_GetFlgs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgsResponse" message="tns:IInfoManagerService_GetFlgs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs1" message="tns:IInfoManagerService_GetFlgs1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs1Response" message="tns:IInfoManagerService_GetFlgs1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs2" message="tns:IInfoManagerService_GetFlgs2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs2Response" message="tns:IInfoManagerService_GetFlgs2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs3">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs3" message="tns:IInfoManagerService_GetFlgs3_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs3Response" message="tns:IInfoManagerService_GetFlgs3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs4">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs4" message="tns:IInfoManagerService_GetFlgs4_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/GetFlgs4Response" message="tns:IInfoManagerService_GetFlgs4_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFlg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/UpdateFlg" message="tns:IInfoManagerService_UpdateFlg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/UpdateFlgResponse" message="tns:IInfoManagerService_UpdateFlg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFlg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/AddFlg" message="tns:IInfoManagerService_AddFlg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/AddFlgResponse" message="tns:IInfoManagerService_AddFlg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestConn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManagerService/TestConn" message="tns:IInfoManagerService_TestConn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManagerService/TestConnResponse" message="tns:IInfoManagerService_TestConn_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IInfoManagerService" type="tns:IInfoManagerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetChildTargets1">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetChildTargets1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildTargets2">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetChildTargets2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParentTarget">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetParentTarget" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParentTarget1">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetParentTarget1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTargetInfo">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetSingleTargetInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTargetInfo1">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetSingleTargetInfo1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetInfo">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetTargetInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNames">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetList">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetTargetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetList1">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetTargetList1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTarget">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/UpdateTarget" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetFlgs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs1">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetFlgs1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs2">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetFlgs2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs3">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetFlgs3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlgs4">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/GetFlgs4" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFlg">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/UpdateFlg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFlg">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/AddFlg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConn">
+      <soap:operation soapAction="http://tempuri.org/IInfoManagerService/TestConn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InfoManagerService">
+    <wsdl:port name="BasicHttpBinding_IInfoManagerService" binding="tns:BasicHttpBinding_IInfoManagerService">
+      <soap:address location="http://localhost:7778/InfoManagerService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,5 +1,4 @@
-﻿<Controls:MetroWindow  
-    x:Class="QueryClient.MainWindow"
+﻿<Controls:MetroWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,28 +6,71 @@
         xmlns:ignore="http://www.ignore.com"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
         xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours"
+        xmlns:local="clr-namespace:QueryClient"  
+        x:Class="QueryClient.MainWindow"
         mc:Ignorable="d ignore"
-        Height="500"
-        Width="700"
+        Height="800"
+        Width="1200"
         Title="{Binding FormTitle}"
+        TitleForeground="Azure"
         ShowIconOnTitleBar="True"
-       Icon=""
+        Icon="/Resources/anjilogo64.ico"
+        AllowsTransparency="False"
+        WindowState="Maximized"
          >
-    <Window.Resources>
+    <Controls:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Icons.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Window.Resources>
+    </Controls:MetroWindow.Resources>
 
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="筛选查询日志" Name="QueryLogArgs_fo" Position="Right" >
+                <local:QueryLogArgsForm />
+            </Controls:Flyout>
+            <Controls:Flyout Header="筛选系统日志" Name="SystemLogArgs_fo" Position="Right" >
+                <local:SystemLogArgsForm />
+            </Controls:Flyout>
+            <Controls:Flyout Header="查找商品" Name="ProducrArgs_fo" Position="Right">
+                <local:ProductArgControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="查找系列" Name="SeriesArgs_fo" Position="Right">
+                <local:SeriesArgsControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="查找厂家" Name="FirmArgs_fo" Position="Right" >
+                <local:FirmArgsControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="添加厂商" Name="AddFirm_fo" Position="Top">
+                <local:AddFirmControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="添加产品" Name="AddPro_fo" Position="Top" >
+                <local:AddProControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="添加系列" Name="AddSer_fo" Position="top">
+                <local:AddSerControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="编辑厂家" Name="EditFirm_fo" Position="Top">
+                <local:EditFirmControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="编辑系列" Name="EditSeries_fo" Position="Top">
+                <local:EditSeriesControl />
+            </Controls:Flyout>
+            <Controls:Flyout Header="编辑产品" Name="EditProduct_fo" Position="Top">
+                <local:EditProductControl />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
     <!--xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"-->
     <!--DataContext="{Binding Main, Source={StaticResource Locator}}">-->
 
     <Controls:MetroWindow.WindowCommands>
         <Controls:WindowCommands>
-            <Button Content ="{Binding WelcomeTitle, NotifyOnSourceUpdated=True,Mode=TwoWay}" Width ="auto" Foreground="White" />
-            <Button>
+            <!--<Button Content ="{Binding WelcomeTitle, NotifyOnSourceUpdated=True,Mode=TwoWay}" Width ="auto" Foreground="White" />-->
+            <Button Command="{Binding ShowConfig}">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20">
                         <Rectangle.Resources>
@@ -41,17 +83,58 @@
                     <TextBlock Text="设置" Foreground="White" Margin="2,2,2,2" />
                 </StackPanel>
             </Button>
+            <Label Content="{Binding WelcomeTitle}"
+                   Width="auto" 
+                   Margin="0,2,0,0" 
+                   HorizontalContentAlignment="Right" 
+                   Foreground="White"/>
+            <Button Content="{Binding RealName}" 
+                    Width="auto" 
+                    Command="{Binding ChangePassword}" 
+                    ToolTip="修改密码"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.WindowCommands>
 
-    <Grid Name="LayoutRoot"  IsEnabled="{Binding IsEnable,NotifyOnSourceUpdated=True,Mode=TwoWay}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Margin="20,0,0,0"  Style="{DynamicResource MetroCircleButtonStyle}" Width="50"  ToolTip="日志管理" Click=" Button_Click_1"  >
-                <!--<Rectangle Width="60" Height="60" Margin="-6,-6,0,0">
+    <Grid x:Name="LayoutRoot"  IsEnabled="{Binding IsEnable, Mode=TwoWay, NotifyOnSourceUpdated=True}" Background="White" >
+        <Grid>
+            <Grid.Resources>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+            </Grid.Resources>
+            <Controls:MetroAnimatedSingleRowTabControl HorizontalContentAlignment="Right" Width="auto"  Height="auto">
+                <TabItem Header="主页" Padding="15,0,0,0" >
+
+                    <Grid>
+                        <TextBlock Foreground="#CC314249" Margin="10,10,0,0" >这里将显示一些实时的查询信息</TextBlock>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="产品信息" Padding="35,0,0,0"  Visibility="{Binding CanAdminInfo,NotifyOnSourceUpdated=True}">
+                    <local:ProductInfo Margin="0,10,0,0" />
+                </TabItem>
+                <TabItem Header="日志筛选" Padding="35,0,0,0" Visibility="{Binding CanAdminLog,NotifyOnSourceUpdated=True}">
+                    <local:LogControl Margin="0,10,0,0"></local:LogControl>
+                </TabItem>
+                <!--<TabItem Header="用户管理" Padding="35,0,0,0" Visibility="{Binding CanAdminUser ,NotifyOnSourceUpdated=True,Mode=TwoWay}" >
+                    <TextBox>用  户  管     理</TextBox>
+                </TabItem>-->
+            </Controls:MetroAnimatedSingleRowTabControl>
+        </Grid>
+
+
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>-->
+
+        <!--<Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TabControl></TabControl>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button Margin="20,0,0,0"  Style="{DynamicResource MetroCircleButtonStyle}" Width="50"  ToolTip="日志管理" Click=" Button_Click_1"  >
+                    -->
+        <!--<Rectangle Width="60" Height="60" Margin="-6,-6,0,0">
                         <Rectangle.Resources>
                             <SolidColorBrush x:Key="BlackBrush" Color="Black" />
                         </Rectangle.Resources>
@@ -59,28 +142,27 @@
                             <ImageBrush ImageSource="Resources/settings.png"/>
                         </Rectangle.Fill>
                     </Rectangle>-->
-                <Rectangle Fill="Black"  Width="20" Height="20" Margin="2,0,0,0">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Visual="{StaticResource appbar_page_onenote}" Stretch="Fill" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-            </Button>
-            <Button Margin="20,0,0,0"  Style="{DynamicResource MetroCircleButtonStyle}" Width="56"  ToolTip="信息管理" Click="Button_Click_2">
-                <Rectangle Fill="Black"  Width="20" Height="20" Margin="2,0,0,0">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Visual="{StaticResource appbar_page_onenote}" Stretch="Fill" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-            </Button>
-        </StackPanel>
-        <Controls:MetroContentControl Content="MetroContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Name="mainControl" Height="296" Margin="0,0,0,-279" Width="682">
-        </Controls:MetroContentControl>
-        <!--<Label Content ="qwe" Grid.Column ="0" Grid.Row ="1" />
+        <!--
+                    <Rectangle Fill="Black"  Width="20" Height="20" Margin="2,0,0,0">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{StaticResource appbar_page_onenote}" Stretch="Fill" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+                <Button Margin="20,0,0,0"  Style="{DynamicResource MetroCircleButtonStyle}" Width="56"  ToolTip="信息管理" Click="Button_Click_2">
+                    <Rectangle Fill="Black"  Width="20" Height="20" Margin="2,0,0,0">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{StaticResource appbar_page_onenote}" Stretch="Fill" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+            </StackPanel>
+            <Controls:MetroContentControl Content="MetroContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Name="mainControl" Height="296" Margin="0,0,0,-279" >
+            </Controls:MetroContentControl>
+            <Label Content ="qwe" Grid.Column ="0" Grid.Row ="1" />
             <Label Content="{Binding LabelCon,  Mode=TwoWay}"   Grid.Column ="0" Grid.Row="1"  />
             <Button Command ="{Binding GetNewLabelCon}" Content ="Click me" Grid.Row="2" Grid.Column="0" />
-            <Label Content="{Binding RealName,NotifyOnTargetUpdated=True}" Grid.Row="3" Grid.Column="0"/>-->
-        <Controls:Flyout Grid.Row="3" Margin="0,0,0,0" IsPinnable="True"  Name="testfo">
-            <Label Content="asd"></Label>
-        </Controls:Flyout>
+            <Label Content="{Binding RealName,NotifyOnTargetUpdated=True}" Grid.Row="3" Grid.Column="0"/>
+        </Grid>-->
     </Grid>
-</Controls:MetroWindow  >
+</Controls:MetroWindow>

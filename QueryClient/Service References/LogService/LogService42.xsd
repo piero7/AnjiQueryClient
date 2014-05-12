@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.LogService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.LogService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7777/AdminService/LogService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" />
+  <xs:complexType name="SystemLogQueryArgs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="info" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" minOccurs="0" name="level" type="q1:LogLevel" />
+      <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userRealName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemLogQueryArgs" nillable="true" type="tns:SystemLogQueryArgs" />
+  <xs:complexType name="ArrayOfSystemLogInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SystemLogInfo" nillable="true" type="tns:SystemLogInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSystemLogInfo" nillable="true" type="tns:ArrayOfSystemLogInfo" />
+  <xs:complexType name="SystemLogInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Info" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" minOccurs="0" name="Level" type="q2:LogLevel" />
+      <xs:element minOccurs="0" name="OptionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserRealName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemLogInfo" nillable="true" type="tns:SystemLogInfo" />
+  <xs:complexType name="QueryLogQueryArgs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="eDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="feature" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fid" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" minOccurs="0" name="level" type="q3:LogLevel" />
+      <xs:element minOccurs="0" name="location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pid" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" minOccurs="0" name="queryMold" type="q4:QueryMold" />
+      <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" minOccurs="0" name="resultMold" type="q5:QueryResultMold" />
+      <xs:element minOccurs="0" name="sDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="sid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryLogQueryArgs" nillable="true" type="tns:QueryLogQueryArgs" />
+</xs:schema>
