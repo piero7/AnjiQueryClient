@@ -18,11 +18,11 @@ namespace QueryClient
         private MainViewModel vm = new MainViewModel();
         private DispatcherTimer timer = new DispatcherTimer();
 
-        private int keepSpan = 60;
-        private int checkSafeSpan = 10;
-        private int checkCancelSpan = 500;
+        //private int keepSpan = 60;
+        //private int checkSafeSpan = 10;
+        //private int checkCancelSpan = 500;
 
-        private int clearSpan = 999999;
+        //private int clearSpan = 999999;
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
@@ -34,6 +34,8 @@ namespace QueryClient
             Closing += (s, e) => { ViewModelLocator.Cleanup(); Application.Current.Shutdown(); };
 
             this.Loaded += (s, e) => vm.lv.ShowDialog();
+
+            this.Closing += MainWindow_Closing;
             //MahApps.Metro.Behaviours.ReloadBehavior.SetOnSelectedTabChanged(this.mainControl, false);
             //this.vm = new MainViewModel();
             #region 消息注册
@@ -105,8 +107,8 @@ namespace QueryClient
              }
              else
              {
-                 var showTask = this.ShowMessageAsync("提示", msg.Content, MessageDialogStyle.Affirmative);
-                 await showTask;
+                 GalaSoft.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(async () => await this.ShowMessageAsync("提示", msg.Content, MessageDialogStyle.Affirmative));
+                 //await showTask;
                  if (msg.Callback != null)
                  {
                      msg.Callback.BeginInvoke(MessageBoxResult.OK, null, null);
@@ -117,30 +119,54 @@ namespace QueryClient
 
             #endregion
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new System.TimeSpan(1000);
-            timer.Start();
-            timer.Tick += timer_Tick;
+            //DispatcherTimer timer = new DispatcherTimer();
+            //timer.Interval = new System.TimeSpan(1000);
+            //timer.Start();
+            //timer.Tick += timer_Tick;
 
         }
 
-        private void timer_Tick(object sender, System.EventArgs e)
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public static int GetMinGongBeiShu(List<int> ints)
-        {
-            ints.Sort();
-            int u = ints[ints.Count - 1] - 1;
-            bool isReal = false;
-            for (; !isReal; u++)
+            MessageDialogResult ret = MessageDialogResult.Negative;
+            GalaSoft.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(async () =>
             {
-                isReal = true;
-                ints.ForEach(i => isReal = isReal && (u % i == 0));
-            }
-            return u;
+                ret = await ShowMessageAsync("确认", "确认要关闭系统吗？\r\n这将导致守护进程的关闭！", MessageDialogStyle.AffirmativeAndNegative);
+            });
+
+            e.Cancel = (ret == MessageDialogResult.Affirmative);
         }
+
+        private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            var s = sender as ToggleSwitch;
+            s.IsChecked = !s.IsChecked;
+        }
+
+        private void OnClosed(object sender, System.EventArgs e)
+        {
+            Application.Current.Shutdown();
+            Application.Current.Dispatcher.InvokeShutdown();
+        }
+
+
+        //private void timer_Tick(object sender, System.EventArgs e)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
+        //public static int GetMinGongBeiShu(List<int> ints)
+        //{
+        //    ints.Sort();
+        //    int u = ints[ints.Count - 1] - 1;
+        //    bool isReal = false;
+        //    for (; !isReal; u++)
+        //    {
+        //        isReal = true;
+        //        ints.ForEach(i => isReal = isReal && (u % i == 0));
+        //    }
+        //    return u;
+        //}
 
 
 

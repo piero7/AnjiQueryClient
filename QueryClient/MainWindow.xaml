@@ -21,12 +21,12 @@
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatSlider.xaml"/>
                 <ResourceDictionary Source="/Resources/Icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+
     </Controls:MetroWindow.Resources>
-
-
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout Header="筛选查询日志" Name="QueryLogArgs_fo" Position="Right" >
@@ -99,19 +99,183 @@
         <Grid>
             <Grid.Resources>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+
             </Grid.Resources>
             <Controls:MetroAnimatedSingleRowTabControl HorizontalContentAlignment="Right" Width="auto"  Height="auto">
                 <TabItem Header="主页" Padding="15,0,0,0" >
 
-                    <Grid>
-                        <TextBlock Foreground="#CC314249" Margin="10,10,0,0" >这里将显示一些实时的查询信息</TextBlock>
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <!--<TextBlock Grid.Row="0"   Foreground="#CC314249" Margin="10,10,0,0" >这里将显示一些实时的查询信息</TextBlock>-->
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                <Controls:TransitioningContentControl Content="{Binding TotalTimeString, NotifyOnSourceUpdated=True, Mode=TwoWay }"
+                                                                  Margin="20,25,30,0"
+                                                                  Height="30"
+                                                                  Transition ="Default"
+                                                                  FontSize="25"
+                                                                  />
+                                <Controls:TransitioningContentControl Content="{Binding TodayQueryCountString, NotifyOnSourceUpdated=True}"
+                                                                  Margin="20,25,30,0"
+                                                                  Height="30"
+                                                                  Transition="Up"
+                                                                  FontSize="25"
+                                                                  HorizontalAlignment="Right"
+                                                                  />
+                            </StackPanel>
+                            <StackPanel Grid.Column="0" Width="auto" Margin="10,10,20,0" MaxWidth="500" MinWidth="300" HorizontalAlignment="Left">
+                                <StackPanel.Resources>
+                                    <Style x:Key="CustomMetroToggleSwitch"
+                                       TargetType="{x:Type Controls:ToggleSwitch}"
+                                       BasedOn="{StaticResource MetroToggleSwitch}">
+                                        <Setter Property="OnLabel"
+                                            Value="正常" />
+                                        <Setter Property="OffLabel"
+                                            Value="异常" />
+                                        <Setter Property="IsEnabled"
+                                            Value="True"/>
+                                        <Setter Property="Foreground"
+                                            Value="Black"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Controls:ToggleSwitch Style="{StaticResource CustomMetroToggleSwitch}"
+                                                       IsChecked="{Binding IsOldCodeOnline, Mode=TwoWay,NotifyOnSourceUpdated=True}"
+                                                       Header="15位码查询服务"
+                                                       Click="ToggleSwitch_Click"
+                                       />
+                                <Controls:ToggleSwitch Style="{StaticResource CustomMetroToggleSwitch}"
+                                                       IsChecked="{Binding Is4d4cOnline, Mode=TwoWay,NotifyOnSourceUpdated=True}"
+                                                       Header="12位彩码查询服务"
+                                                       Click="ToggleSwitch_Click"
+                                       />
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Width="auto" Margin="10,10,20,0" MaxWidth="500" MinWidth="300" HorizontalAlignment="Left">
+                                <StackPanel.Resources>
+                                    <Style x:Key="CustomMetroToggleSwitch"
+                                       TargetType="{x:Type Controls:ToggleSwitch}"
+                                       BasedOn="{StaticResource MetroToggleSwitch}">
+                                        <Setter Property="OnLabel"
+                                            Value="正常" />
+                                        <Setter Property="OffLabel"
+                                            Value="异常" />
+                                        <Setter Property="IsEnabled"
+                                            Value="True"/>
+                                        <Setter Property="Foreground"
+                                            Value="Black"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Controls:ToggleSwitch 
+                                Style="{StaticResource CustomMetroToggleSwitch}" 
+                                IsChecked="{Binding IsWebOnline,NotifyOnSourceUpdated=True ,Mode=TwoWay,NotifyOnTargetUpdated=True}" 
+                                Header="网页服务接口"
+                                Click="ToggleSwitch_Click"
+                                />
+                                <Controls:ToggleSwitch Style="{StaticResource CustomMetroToggleSwitch}"
+                                                   IsChecked="{Binding IsWeinxinOnline, Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"
+                                                   Header="微信服务接口"
+                                                   Click="ToggleSwitch_Click"
+                                                   />
+                                <Controls:ToggleSwitch Style="{StaticResource CustomMetroToggleSwitch}"
+                                                   Header="电话服务接口"
+                                                   IsChecked="{Binding IsPhoneOnline, Mode=TwoWay,  NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"
+                                                   Click="ToggleSwitch_Click"
+                                                   />
+                                <Controls:ToggleSwitch Style="{StaticResource CustomMetroToggleSwitch}"
+                                                   Header="短信服务接口"
+                                                   IsChecked="{Binding IsSmOnline, Mode=TwoWay,  NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"
+                                                   Click="ToggleSwitch_Click"
+                                                   />
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Row="1" Margin="10,20,10,10" ShowGridLines="True" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="今日查询" 
+                                       HorizontalAlignment="Right" 
+                                       Margin="0,0,10,0" 
+                                       FontStyle="Italic" FontWeight="Bold" FontSize="18" 
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       ></TextBlock>
+                            <TextBlock Text="黑名单" 
+                                       HorizontalAlignment="Right" 
+                                       Margin="0,0,10,0" 
+                                       FontStyle="Italic" FontWeight="Bold" FontSize="18" 
+                                       Grid.Column="1"
+                                       Grid.Row="0"
+                                       ></TextBlock>
+                            <TextBlock Text="白名单" 
+                                       HorizontalAlignment="Right" 
+                                       Margin="0,0,10,0" 
+                                       FontStyle="Italic" FontWeight="Bold" FontSize="18" 
+                                       Grid.Column="2"
+                                       Grid.Row="0"
+                                       ></TextBlock>
+                            <DataGrid Grid.Column=" 0" Grid.Row="1"
+                                      ItemsSource="{Binding LogList, NotifyOnSourceUpdated=True, Mode=TwoWay}" 
+                                      IsReadOnly="True"
+                                      AutoGenerateColumns="False"
+                                      Style="{StaticResource AzureDataGrid}"
+                                      >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn  Header="查询时间" Binding="{Binding OptionDate}"></DataGridTextColumn>
+                                    <DataGridTextColumn  Header="防伪码" Binding="{Binding Code}"></DataGridTextColumn>
+                                    <DataGridTextColumn  Header="结果" Binding="{Binding Result}"></DataGridTextColumn>
+                                    <DataGridTextColumn  Header="特征" Binding="{Binding Feature}"></DataGridTextColumn>
+                                    <DataGridTextColumn  Header="查询渠道" Binding="{Binding Mold}"></DataGridTextColumn>
+                                    <DataGridTextColumn  Header="备注" Binding="{Binding remarks}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Column="1" Grid.Row="1"
+                                      ItemsSource="{Binding BlackList, NotifyOnSourceUpdated=True,Mode=TwoWay}"
+                                      IsReadOnly="True"
+                                      AutoGenerateColumns="False"
+                                      Style="{StaticResource AzureDataGrid}"
+                                      >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="创建时间" Binding="{ Binding CreateDate}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="查询方式" Binding="{Binding Mold}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="特征" Binding="{Binding Feature}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="原因" Binding="{Binding Reason}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Column="2" Grid.Row="1"
+                                      ItemsSource="{Binding WhiteList, NotifyOnSourceUpdated=True,Mode=TwoWay}"
+                                      IsReadOnly="True"
+                                      AutoGenerateColumns="False"
+                                      Style="{StaticResource AzureDataGrid}"
+                                      >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="创建时间" Binding="{ Binding CreateDate}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="查询方式" Binding="{Binding Mold}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="特征" Binding="{Binding Feature}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="原因" Binding="{Binding Reason}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                     </Grid>
                 </TabItem>
                 <TabItem Header="产品信息" Padding="35,0,0,0"  Visibility="{Binding CanAdminInfo,NotifyOnSourceUpdated=True}">
                     <local:ProductInfo Margin="0,10,0,0" />
                 </TabItem>
                 <TabItem Header="日志筛选" Padding="35,0,0,0" Visibility="{Binding CanAdminLog,NotifyOnSourceUpdated=True}">
-                    <local:LogControl Margin="0,10,0,0"></local:LogControl>
+                    <local:LogControl Margin="0,10,0,0"/>
                 </TabItem>
                 <!--<TabItem Header="用户管理" Padding="35,0,0,0" Visibility="{Binding CanAdminUser ,NotifyOnSourceUpdated=True,Mode=TwoWay}" >
                     <TextBox>用  户  管     理</TextBox>

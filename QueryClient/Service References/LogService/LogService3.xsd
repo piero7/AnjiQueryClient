@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8777/AdminService/LogService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log.Authority" />
   <xs:simpleType name="LogLevel">
     <xs:restriction base="xs:string">
       <xs:enumeration value="All" />
@@ -31,6 +32,7 @@
       <xs:enumeration value="未找到" />
       <xs:enumeration value="被拦截" />
       <xs:enumeration value="网络异常" />
+      <xs:enumeration value="格式错误" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="QueryResultMold" nillable="true" type="tns:QueryResultMold" />
@@ -57,4 +59,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="QueryLog" nillable="true" type="tns:QueryLog" />
+  <xs:complexType name="SystemLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Info" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Level" type="tns:LogLevel" />
+      <xs:element minOccurs="0" name="OptionDate" type="xs:dateTime" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log.Authority" minOccurs="0" name="User" nillable="true" type="q1:User" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemLog" nillable="true" type="tns:SystemLog" />
 </xs:schema>

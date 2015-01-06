@@ -32,6 +32,12 @@ namespace QueryClient.ViewModel
         }
         #region 参数
         private QueryLogQueryArgs _args;
+
+        /// <summary>
+        /// 查询日志是否自动筛选Keep Line
+        /// </summary>
+        public const string IsWithKeepLinePropertyName = "IsWithKeepLine";
+        private bool _isWithKeepLine = false;
         #endregion
 
         #region 属性
@@ -60,6 +66,25 @@ namespace QueryClient.ViewModel
             }
         }
 
+        public bool IsWithKeepLine
+        {
+            get
+            {
+                return _isWithKeepLine;
+            }
+
+            set
+            {
+                if (_isWithKeepLine == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(IsWithKeepLinePropertyName);
+                _isWithKeepLine = value;
+                RaisePropertyChanged(IsWithKeepLinePropertyName);
+            }
+        }
         #endregion
 
         #region 命令

@@ -35,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>
@@ -80,18 +81,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\Fliter.cs" />
     <Compile Include="Helper\Guard.cs" />
+    <Compile Include="Helper\HtmlParser.cs" />
+    <Compile Include="Service References\FliterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\PhoneServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\WebServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\WeixinServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -322,6 +325,38 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\FliterService\FliterService.wsdl" />
+    <None Include="Service References\FliterService\FliterService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FliterService\FliterService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FliterService\FliterService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FliterService\QueryClient.FliterService.BlackNote.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FliterService\QueryClient.FliterService.WhiteNote.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LogService\LogService.wsdl" />
+    <None Include="Service References\LogService\LogService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\PhoneServiceReference\PhoneService.wsdl" />
     <None Include="Service References\PhoneServiceReference\PhoneService.xsd">
       <SubType>Designer</SubType>
@@ -364,7 +399,6 @@
     <None Include="Service References\WebServiceReference\WebService5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WeixinServiceReference\WeixinService1.wsdl" />
     <Resource Include="Resources\Entypo.ttf" />
     <None Include="Service References\InfoManagerService\InfoManagerService1.wsdl" />
     <None Include="Service References\InfoManagerService\InfoManagerService5.xsd">
@@ -388,19 +422,6 @@
     <None Include="Service References\InfoManagerService\QueryClient.InfoManagerService.QueryTargetInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\LogService\LogService1.wsdl" />
-    <None Include="Service References\LogService\LogService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LogService\LogService41.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LogService\LogService42.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LogService\LogService43.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\LogService\QueryClient.LogService.QueryLog.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -418,12 +439,12 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FliterService\" />
     <WCFMetadataStorage Include="Service References\InfoManagerService\" />
     <WCFMetadataStorage Include="Service References\LogService\" />
     <WCFMetadataStorage Include="Service References\PhoneServiceReference\" />
     <WCFMetadataStorage Include="Service References\SystemMenagerService\" />
     <WCFMetadataStorage Include="Service References\WebServiceReference\" />
-    <WCFMetadataStorage Include="Service References\WeixinServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\SystemMenagerService\configuration91.svcinfo" />
@@ -477,9 +498,6 @@
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\LogService\LogService1.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\SystemMenagerService\SystemManagerService1.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -513,22 +531,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WeixinServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WeixinServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WeixinServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="ViewModel\Guard\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WeixinServiceReference\WeixinService1.disco" />
+    <None Include="Service References\LogService\LogService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FliterService\FliterService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FliterService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FliterService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FliterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

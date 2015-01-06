@@ -25,7 +25,12 @@ namespace QueryClient.ViewModel
         #region 参数
         private bool _isBusy;
         private List<LogService.QueryLog> _logs;
+
+        public const string IsWithKeepLinePropertyName = "IsWithKeepLine";
+        private bool _isWithKeepLine = false;
         #endregion
+
+        #region 属性
         public bool IsBusy
         {
             get
@@ -59,14 +64,34 @@ namespace QueryClient.ViewModel
                 RaisePropertyChanged("Logs");
             }
         }
-        #region 属性
+        public bool IsWithKeepLine
+        {
+            get
+            {
+                return _isWithKeepLine;
+            }
+
+            set
+            {
+                if (_isWithKeepLine == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(IsWithKeepLinePropertyName);
+                _isWithKeepLine = value;
+                RaisePropertyChanged(IsWithKeepLinePropertyName);
+            }
+        }
         #endregion
+
         #region 命令
         #endregion
+
         #region 方法
         private void InitLogs()
         {
-            
+
         }
         #endregion
     }

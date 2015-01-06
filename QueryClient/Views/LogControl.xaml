@@ -19,7 +19,7 @@
         <TabItem Loaded="InitQueryLogs"  Header="查询日志" >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="37" ></RowDefinition>
+                    <RowDefinition Height="40" ></RowDefinition>
                     <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0"  HorizontalAlignment="Left" Orientation="Horizontal">
@@ -47,7 +47,15 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </Button>
+
                 </StackPanel>
+                <Controls:ToggleSwitch OnLabel="显示Keep Line日志" OffLabel="隐藏Keep Line日志"
+                                       MinWidth="250"  MaxWidth="400"
+                                       HorizontalAlignment="Right" Margin="0,0,15,0"
+                                       IsChecked="{Binding IsWithKeepLine}"
+                                       Click="InitQueryLogs"
+                                       />
+
                 <DataGrid 
                     MinWidth="600"
                     MinHeight="450" 

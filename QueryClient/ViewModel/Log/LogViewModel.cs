@@ -46,13 +46,22 @@ namespace QueryClient.ViewModel
             {
                 if (msg.Content == "systemLog")
                 {
-                    this.systemLogArgs = new SystemLogQueryArgs { sDate = new DateTime(2008, 8, 8), eDate = DateTime.Now.AddDays(1) };
+                    this.systemLogArgs = new SystemLogQueryArgs
+                    {
+                        sDate = new DateTime(2008, 8, 8),
+                        eDate = DateTime.Now.AddDays(1)
+                    };
                     QuerySyslogExec();
                     return;
                 }
                 if (msg.Content == "queryLog")
                 {
-                    this.queryLogArgs = new QueryLogQueryArgs { sDate = new DateTime(2008, 8, 8), eDate = DateTime.Now.AddDays(1) };
+                    this.queryLogArgs = new QueryLogQueryArgs
+                    {
+                        sDate = new DateTime(2008, 8, 8),
+                        eDate = DateTime.Now.AddDays(1),
+                        queryMold = QueryMold.All
+                    };
                     QueryLogExec();
                     return;
                 }
@@ -81,6 +90,7 @@ namespace QueryClient.ViewModel
             });
 
         }
+
         #region 参数
         /// <summary>
         /// 系统日志list
@@ -99,7 +109,11 @@ namespace QueryClient.ViewModel
         /// Query日志查询参数
         /// </summary>
         private QueryLogQueryArgs queryLogArgs = new QueryLogQueryArgs();
-
+        /// <summary>
+        /// 查询日志是否自动筛选Keep Line
+        /// </summary>
+        public const string IsWithKeepLinePropertyName = "IsWithKeepLine";
+        private bool _isWithKeepLine = false;
 
         #endregion
 
@@ -179,6 +193,25 @@ namespace QueryClient.ViewModel
             }
         }
 
+        public bool IsWithKeepLine
+        {
+            get
+            {
+                return _isWithKeepLine;
+            }
+
+            set
+            {
+                if (_isWithKeepLine == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(IsWithKeepLinePropertyName);
+                _isWithKeepLine = value;
+                RaisePropertyChanged(IsWithKeepLinePropertyName);
+            }
+        }
 
         #endregion
 
@@ -270,7 +303,7 @@ namespace QueryClient.ViewModel
             {
                 lc.Open();
                 //TODO Set the method async, set UI waiting.
-                var queryTask = lc.QueryLogQueryTakeAsync(this.QueryLogArgs, 0, count);
+                var queryTask = lc.QueryLogQueryTakeAsync(this.QueryLogArgs, 0, count, this.IsWithKeepLine);
                 this.QueryLogList = (await queryTask).OrderByDescending(l => l.OptionDate).ToList();
             }
             catch (Exception ex)
@@ -294,7 +327,8 @@ namespace QueryClient.ViewModel
             this.QueryLogArgs = new QueryLogQueryArgs
             {
                 sDate = new System.DateTime(2008, 8, 8),
-                eDate = System.DateTime.Now.AddDays(1)
+                eDate = System.DateTime.Now.AddDays(1),
+                queryMold = QueryMold.All
             };
             QueryLogExec();
         }
