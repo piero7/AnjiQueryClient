@@ -84,6 +84,12 @@
     <Compile Include="Helper\Fliter.cs" />
     <Compile Include="Helper\Guard.cs" />
     <Compile Include="Helper\HtmlParser.cs" />
+    <Compile Include="Helper\Suspicious.cs" />
+    <Compile Include="Service References\DubiousService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\FliterService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -325,6 +331,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\DubiousService\QueryClient.DubiousService.ReturnParameters.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DubiousService\Service.wsdl" />
+    <None Include="Service References\DubiousService\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DubiousService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DubiousService\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\FliterService\FliterService.wsdl" />
     <None Include="Service References\FliterService\FliterService.xsd">
       <SubType>Designer</SubType>
@@ -439,6 +458,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DubiousService\" />
     <WCFMetadataStorage Include="Service References\FliterService\" />
     <WCFMetadataStorage Include="Service References\InfoManagerService\" />
     <WCFMetadataStorage Include="Service References\LogService\" />
@@ -547,6 +567,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FliterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DubiousService\Service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DubiousService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DubiousService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DubiousService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

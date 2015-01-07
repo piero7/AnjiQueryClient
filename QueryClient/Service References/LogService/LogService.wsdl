@@ -51,6 +51,12 @@
   <wsdl:message name="ILogService_TestConn_OutputMessage">
     <wsdl:part name="parameters" element="tns:TestConnResponse" />
   </wsdl:message>
+  <wsdl:message name="ILogService_GetCodeQueryLogs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCodeQueryLogs" />
+  </wsdl:message>
+  <wsdl:message name="ILogService_GetCodeQueryLogs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCodeQueryLogsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ILogService">
     <wsdl:operation name="SystemLogQuery">
       <wsdl:input wsaw:Action="http://tempuri.org/ILogService/SystemLogQuery" message="tns:ILogService_SystemLogQuery_InputMessage" />
@@ -79,6 +85,10 @@
     <wsdl:operation name="TestConn">
       <wsdl:input wsaw:Action="http://tempuri.org/ILogService/TestConn" message="tns:ILogService_TestConn_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILogService/TestConnResponse" message="tns:ILogService_TestConn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeQueryLogs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogService/GetCodeQueryLogs" message="tns:ILogService_GetCodeQueryLogs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogService/GetCodeQueryLogsResponse" message="tns:ILogService_GetCodeQueryLogs_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ILogService" type="tns:ILogService">
@@ -139,6 +149,15 @@
     </wsdl:operation>
     <wsdl:operation name="TestConn">
       <soap:operation soapAction="http://tempuri.org/ILogService/TestConn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeQueryLogs">
+      <soap:operation soapAction="http://tempuri.org/ILogService/GetCodeQueryLogs" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
