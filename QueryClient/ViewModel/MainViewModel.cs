@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using QueryClient.Helper;
+using System.Threading.Tasks;
 
 namespace QueryClient.ViewModel
 {
@@ -373,7 +375,7 @@ namespace QueryClient.ViewModel
                 RaisePropertyChanging(TotalTimePropertyName);
                 _totalTime = value;
                 RaisePropertyChanged(TotalTimePropertyName);
-                this.TotalTimeString = "运行时间： " + value.ToLongTimeString();
+                this.TotalTimeString = string.Format("运行时间： {0}天 {1}小时 {2}分钟 {3}秒", value.DayOfYear-1, value.Hour, value.Minute, value.Second);
             }
         }
 
@@ -552,6 +554,18 @@ namespace QueryClient.ViewModel
             return true;
         }
 
+        private RelayCommand _getDubious;
+
+        public RelayCommand GetDubious
+        {
+            get
+            {
+                return _getDubious
+                    ?? (_getDubious = new RelayCommand(ExecuteGetDubious));
+            }
+        }
+
+
 
 
         #endregion
@@ -586,6 +600,14 @@ namespace QueryClient.ViewModel
             return u - 1;
         }
 
+        async private void ExecuteGetDubious()
+        {
+            var t = new Task(() => DubiousFliter.GetDobious(this._queryLog));
+            t.Start();
+            await t;
+            Messenger.Default.Send<GenericMessage<string>>(new GenericMessage<string>("Finish get all dubious..."), "showMsg");
+        }
+
 
         #endregion
 
@@ -595,12 +617,12 @@ namespace QueryClient.ViewModel
 
             if (this.span % keepSpan == 0)
             {
-                this.IsPhoneOnline = await d.CheckPhone();
-                this.IsWebOnline = await d.CheckWeb();
-                this.IsWeinxinOnline = await d.CheckWeixin();
-                this.IsSmOnline = await d.CheckSm();
-                this.Is4d4cOnline = await d.Check4d4c();
-                this.IsOldCodeOnline = await d.CheckOldCode();
+                //this.IsPhoneOnline = await d.CheckPhone();
+                //this.IsWebOnline = await d.CheckWeb();
+                //this.IsWeinxinOnline = await d.CheckWeixin();
+                //this.IsSmOnline = await d.CheckSm();
+                //this.Is4d4cOnline = await d.Check4d4c();
+                //this.IsOldCodeOnline = await d.CheckOldCode();
             }
             if (this.span % this.checkSafeSpan == 0)
             {
@@ -622,6 +644,8 @@ namespace QueryClient.ViewModel
                 this.span = 0;
             }
         }
+
+
         #endregion
 
         #region test iteam

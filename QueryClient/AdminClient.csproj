@@ -360,20 +360,36 @@
     <None Include="Service References\FliterService\QueryClient.FliterService.WhiteNote.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\LogService\LogService.wsdl" />
-    <None Include="Service References\LogService\LogService.xsd">
+    <None Include="Service References\InfoManagerService\InfoManagerService.wsdl" />
+    <None Include="Service References\InfoManagerService\InfoManagerService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LogService\LogService1.xsd">
+    <None Include="Service References\InfoManagerService\InfoManagerService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LogService\LogService2.xsd">
+    <None Include="Service References\InfoManagerService\InfoManagerService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LogService\LogService3.xsd">
+    <None Include="Service References\InfoManagerService\InfoManagerService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LogService\LogService4.xsd">
+    <None Include="Service References\InfoManagerService\InfoManagerService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService1.wsdl" />
+    <None Include="Service References\LogService\LogService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LogService\LogService54.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PhoneServiceReference\PhoneService.wsdl" />
@@ -383,17 +399,17 @@
     <None Include="Service References\PhoneServiceReference\PhoneService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SystemMenagerService\SystemManagerService1.wsdl" />
-    <None Include="Service References\SystemMenagerService\SystemManagerService4.xsd">
+    <None Include="Service References\SystemMenagerService\SystemManagerService.wsdl" />
+    <None Include="Service References\SystemMenagerService\SystemManagerService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SystemMenagerService\SystemManagerService41.xsd">
+    <None Include="Service References\SystemMenagerService\SystemManagerService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SystemMenagerService\SystemManagerService42.xsd">
+    <None Include="Service References\SystemMenagerService\SystemManagerService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SystemMenagerService\SystemManagerService43.xsd">
+    <None Include="Service References\SystemMenagerService\SystemManagerService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\WebServiceReference\QueryClient.WebServiceReference.QueryPackage.datasource">
@@ -419,22 +435,6 @@
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Resources\Entypo.ttf" />
-    <None Include="Service References\InfoManagerService\InfoManagerService1.wsdl" />
-    <None Include="Service References\InfoManagerService\InfoManagerService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InfoManagerService\InfoManagerService51.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InfoManagerService\InfoManagerService52.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InfoManagerService\InfoManagerService53.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InfoManagerService\InfoManagerService54.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\InfoManagerService\QueryClient.InfoManagerService.Flg.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -491,9 +491,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\InfoManagerService\InfoManagerService1.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\InfoManagerService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -516,9 +513,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\SystemMenagerService\SystemManagerService1.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WebServiceReference\WebService.disco" />
@@ -554,9 +548,6 @@
     <Folder Include="ViewModel\Guard\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\LogService\LogService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\FliterService\FliterService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -585,6 +576,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SystemMenagerService\SystemManagerService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogService\LogService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InfoManagerService\InfoManagerService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

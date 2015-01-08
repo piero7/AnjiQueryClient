@@ -60,140 +60,143 @@ namespace QueryClient
 
             return Task.Run(() =>
             {
-                FliterServiceClient fClient = new FliterServiceClient();
-
-                LogServiceClient lClient = new LogServiceClient();
-                try
+                lock (this)
                 {
-                    lClient.Open();
-                    fClient.Open();
-                    if (SyncBlackNotes)
+                    FliterServiceClient fClient = new FliterServiceClient();
+
+                    LogServiceClient lClient = new LogServiceClient();
+                    try
                     {
-                        //定时同步黑名单
-                        this.BlackList = fClient.GetBlackNoteList().ToList();
-                    }
-                    if (SyncWhiteNotes)
-                    {
-                        //定时同步白名单
-                        this.WhiteList = fClient.GetWhiteNoteList().ToList();
-                    }
-
-                    //获取日志
-                    NewLogList = lClient.LastQueryLogQuery(this.LastId, false);
-                    if (NewLogList.Count() > 0)
-                    {
-                        this.LastId = NewLogList.Max(n => n.Id);
-                    }
-
-                    //添加至对应的列表中
-                    this.TodayLogList.AddRange(NewLogList);
-                    this.LastHundreLogList.AddRange(NewLogList);
-
-
-
-                    //删除过期黑名单
-                    foreach (var n in BlackList)
-                    {
-                        if (n.Reason == "当日查询过多！" && DateTime.Now.Subtract(n.CreateDate).TotalDays > 1)
+                        lClient.Open();
+                        fClient.Open();
+                        if (SyncBlackNotes)
                         {
-                            fClient.DelBlackNote(n);
-                            continue;
+                            //定时同步黑名单
+                            this.BlackList = fClient.GetBlackNoteList().ToList();
                         }
-                        if (n.Reason == "短时间内频繁查询。" && DateTime.Now.Subtract(n.CreateDate).TotalSeconds > this.shortTimeSpan)
+                        if (SyncWhiteNotes)
                         {
-                            fClient.DelBlackNote(n);
+                            //定时同步白名单
+                            this.WhiteList = fClient.GetWhiteNoteList().ToList();
                         }
-                    }
 
-                    //删除本地日志中的过期项
-                    //if (this.LastHundreLogList.Count() > 100)
-                    //{
-                    //    this.LastHundreLogList.RemoveRange(0, this.LastHundreLogList.Count() - 100);
-                    //}
-                    this.LastHundreLogList.RemoveAll(n => DateTime.Now.Subtract(n.OptionDate).TotalSeconds > this.shortTimeSpan);
-                    this.TodayLogList.RemoveAll(n => DateTime.Now.Subtract(n.OptionDate).TotalDays > 1);
-                    //while (this.TodayLogList.Count() > 0 && DateTime.Now.Subtract(this.TodayLogList[0].OptionDate).TotalDays > 1)
-                    //{
-                    //    this.TodayLogList.RemoveAt(0);
-                    //}
-                    BlackList.RemoveAll(n => n.Reason == "当日查询过多！" && DateTime.Now.Subtract(n.CreateDate).TotalDays > 1);
-                    BlackList.RemoveAll(n => n.Reason == "短时间内频繁查询。" && DateTime.Now.Subtract(n.CreateDate).TotalSeconds > this.shortTimeSpan);
-
-                    //筛选黑名单
-                    var todayDic = GetCountDic(TodayLogList);
-                    var lastDic = GetCountDic(LastHundreLogList);
-
-                    //检测是否在白名单内
-                    foreach (var k in todayDic.Keys)
-                    {
-                        if (this.WhiteList.Any(n => n.Feature == k.Feature && n.Mold == k.Mold))
+                        //获取日志
+                        NewLogList = lClient.LastQueryLogQuery(this.LastId, false);
+                        if (NewLogList.Count() > 0)
                         {
-                            //todayDic.Remove(k);
-                            todayDic[k] = 0;
+                            this.LastId = NewLogList.Max(n => n.Id);
                         }
-                    }
-                    foreach (var k in lastDic.Keys)
-                    {
-                        if (this.WhiteList.Any(n => n.Feature == k.Feature && n.Mold == k.Mold))
+
+                        //添加至对应的列表中
+                        this.TodayLogList.AddRange(NewLogList);
+                        this.LastHundreLogList.AddRange(NewLogList);
+
+
+
+                        //删除过期黑名单
+                        foreach (var n in BlackList)
                         {
-                            //lastDic.Remove(k);
-                            lastDic[k] = 0;
-                        }
-                    }
-                    //添加至黑名单中(封装新的方法)
-                    foreach (var note in todayDic)
-                    {
-                        if (note.Value > this.timesForOneDay)
-                        {
-                            // AddToBlackNote(note.Key);
-                            var newNote = new BlackNote
+                            if (n.Reason == "当日查询过多！" && DateTime.Now.Subtract(n.CreateDate).TotalDays > 1)
                             {
-                                CreateDate = DateTime.Now,
-                                Feature = note.Key.Feature,
-                                Mold = note.Key.Mold,
-                                Flg = true,
-                                Reason = "当日查询过多！",
-                            };
-                            if (fClient.AddBlackNote(newNote) == 1)
+                                fClient.DelBlackNote(n);
+                                continue;
+                            }
+                            if (n.Reason == "短时间内频繁查询。" && DateTime.Now.Subtract(n.CreateDate).TotalSeconds > this.shortTimeSpan)
                             {
-                                this.BlackList.Add(newNote);
+                                fClient.DelBlackNote(n);
                             }
                         }
 
-                    }
-                    foreach (var note in lastDic)
-                    {
-                        if (note.Value > this.shortTimeQueryTimes)
+                        //删除本地日志中的过期项
+                        //if (this.LastHundreLogList.Count() > 100)
+                        //{
+                        //    this.LastHundreLogList.RemoveRange(0, this.LastHundreLogList.Count() - 100);
+                        //}
+                        this.LastHundreLogList.RemoveAll(n => DateTime.Now.Subtract(n.OptionDate).TotalSeconds > this.shortTimeSpan);
+                        this.TodayLogList.RemoveAll(n => DateTime.Now.Subtract(n.OptionDate).TotalDays > 1);
+                        //while (this.TodayLogList.Count() > 0 && DateTime.Now.Subtract(this.TodayLogList[0].OptionDate).TotalDays > 1)
+                        //{
+                        //    this.TodayLogList.RemoveAt(0);
+                        //}
+                        BlackList.RemoveAll(n => n.Reason == "当日查询过多！" && DateTime.Now.Subtract(n.CreateDate).TotalDays > 1);
+                        BlackList.RemoveAll(n => n.Reason == "短时间内频繁查询。" && DateTime.Now.Subtract(n.CreateDate).TotalSeconds > this.shortTimeSpan);
+
+                        //筛选黑名单
+                        var todayDic = GetCountDic(TodayLogList);
+                        var lastDic = GetCountDic(LastHundreLogList);
+
+                        //检测是否在白名单内
+                        foreach (var k in todayDic.Keys)
                         {
-                            var newNote = new BlackNote
+                            if (this.WhiteList.Any(n => n.Feature == k.Feature && n.Mold == k.Mold))
                             {
-                                CreateDate = DateTime.Now,
-                                Reason = "短时间内频繁查询。",
-                                Flg = true,
-                                Feature = note.Key.Feature,
-                                Mold = note.Key.Mold,
-                                UpdateDate = DateTime.Now,
-                                Id = 0
-                            };
-                            var ret = fClient.AddBlackNote(newNote);
-                            if (ret == 1)
-                            //if (fClient.AddBlackNote(newNote) == 1)
-                            {
-                                this.BlackList.Add(newNote);
+                                //todayDic.Remove(k);
+                                todayDic[k] = 0;
                             }
                         }
+                        foreach (var k in lastDic.Keys)
+                        {
+                            if (this.WhiteList.Any(n => n.Feature == k.Feature && n.Mold == k.Mold))
+                            {
+                                //lastDic.Remove(k);
+                                lastDic[k] = 0;
+                            }
+                        }
+                        //添加至黑名单中(封装新的方法)
+                        foreach (var note in todayDic)
+                        {
+                            if (note.Value > this.timesForOneDay)
+                            {
+                                // AddToBlackNote(note.Key);
+                                var newNote = new BlackNote
+                                {
+                                    CreateDate = DateTime.Now,
+                                    Feature = note.Key.Feature,
+                                    Mold = note.Key.Mold,
+                                    Flg = true,
+                                    Reason = "当日查询过多！",
+                                };
+                                if (fClient.AddBlackNote(newNote) == 1)
+                                {
+                                    this.BlackList.Add(newNote);
+                                }
+                            }
+
+                        }
+                        foreach (var note in lastDic)
+                        {
+                            if (note.Value > this.shortTimeQueryTimes)
+                            {
+                                var newNote = new BlackNote
+                                {
+                                    CreateDate = DateTime.Now,
+                                    Reason = "短时间内频繁查询。",
+                                    Flg = true,
+                                    Feature = note.Key.Feature,
+                                    Mold = note.Key.Mold,
+                                    UpdateDate = DateTime.Now,
+                                    Id = 0
+                                };
+                                var ret = fClient.AddBlackNote(newNote);
+                                if (ret == 1)
+                                //if (fClient.AddBlackNote(newNote) == 1)
+                                {
+                                    this.BlackList.Add(newNote);
+                                }
+                            }
+                        }
+                        lClient.Close();
+                        fClient.Close();
                     }
-                    lClient.Close();
-                    fClient.Close();
-                }
-                catch (Exception ex)
-                {
-                    Messenger.Default.Send<DialogMessage>(new DialogMessage(string.Format("An error was happend on {0}:\r\n{1}", "add black note", ex.Message), null), "showMsg");
-                }
-                finally
-                {
-                    lClient.Abort();
-                    fClient.Abort();
+                    catch (Exception ex)
+                    {
+                        Messenger.Default.Send<DialogMessage>(new DialogMessage(string.Format("An error was happend on {0}:\r\n{1}", "add black note", ex.Message), null), "showMsg");
+                    }
+                    finally
+                    {
+                        lClient.Abort();
+                        fClient.Abort();
+                    }
                 }
             }
              );

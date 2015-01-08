@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="caVt5wRzg4EUIEnBkKOqHX9P1So=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="db9aLkQZroldrd+x1Mdr21dlw1E=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ISystemManagerService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ISystemManagerService" contract="SystemMenagerService.ISystemManagerService" bindingType="basicHttpBinding" address="http://localhost:7777/AdminService/SystemManagerService.svc" bindingConfiguration="BasicHttpBinding_ISystemManagerService">
+    <endpoint name="BasicHttpBinding_ISystemManagerService" contract="SystemMenagerService.ISystemManagerService" bindingType="basicHttpBinding" address="http://121.40.79.86:8777/AdminService/SystemManagerService.svc" bindingConfiguration="BasicHttpBinding_ISystemManagerService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7777/AdminService/SystemManagerService.svc</serializedValue>
+          <serializedValue>http://121.40.79.86:8777/AdminService/SystemManagerService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

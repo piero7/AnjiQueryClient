@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:7777/AdminService/SystemManagerService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://121.40.79.86:8777/AdminService/SystemManagerService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SystemManagerService1.wsdl" MetadataType="Wsdl" ID="93e1530f-8f75-4ec4-b840-12b432c54afe" SourceId="1" SourceUrl="http://localhost:7777/AdminService/SystemManagerService.svc?wsdl" />
-    <MetadataFile FileName="SystemManagerService4.xsd" MetadataType="Schema" ID="958ad435-ae84-49fb-b3a5-6528e2547973" SourceId="1" SourceUrl="http://localhost:7777/AdminService/SystemManagerService.svc?xsd=xsd1" />
-    <MetadataFile FileName="SystemManagerService41.xsd" MetadataType="Schema" ID="ff53cea7-e6f4-4a50-be39-6ccb89991c6d" SourceId="1" SourceUrl="http://localhost:7777/AdminService/SystemManagerService.svc?xsd=xsd3" />
-    <MetadataFile FileName="SystemManagerService42.xsd" MetadataType="Schema" ID="9782151a-1a84-4629-aa86-e8bb835fc4c5" SourceId="1" SourceUrl="http://localhost:7777/AdminService/SystemManagerService.svc?xsd=xsd2" />
-    <MetadataFile FileName="SystemManagerService1.disco" MetadataType="Disco" ID="b99042a4-3098-459d-89f5-eae8b3984a5b" SourceId="1" SourceUrl="http://localhost:7777/AdminService/SystemManagerService.svc?disco" />
-    <MetadataFile FileName="SystemManagerService43.xsd" MetadataType="Schema" ID="6097fdeb-115c-49b5-8adb-021eae4638a9" SourceId="1" SourceUrl="http://localhost:7777/AdminService/SystemManagerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SystemManagerService.disco" MetadataType="Disco" ID="c03c2670-8c9f-4838-b445-73ed7258c660" SourceId="1" SourceUrl="http://121.40.79.86:8777/AdminService/SystemManagerService.svc?disco" />
+    <MetadataFile FileName="SystemManagerService.xsd" MetadataType="Schema" ID="2ad046f1-5538-45ff-a6a1-10fcab17b30f" SourceId="1" SourceUrl="http://121.40.79.86:8777/AdminService/SystemManagerService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SystemManagerService1.xsd" MetadataType="Schema" ID="3523a0fc-de9d-4771-a012-d32650ffeb5e" SourceId="1" SourceUrl="http://121.40.79.86:8777/AdminService/SystemManagerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SystemManagerService.wsdl" MetadataType="Wsdl" ID="e01ee102-d4b1-4562-9bac-12a5769d5157" SourceId="1" SourceUrl="http://121.40.79.86:8777/AdminService/SystemManagerService.svc?wsdl" />
+    <MetadataFile FileName="SystemManagerService2.xsd" MetadataType="Schema" ID="c11c6fae-29e0-4e35-a9a1-77278aa0ab2f" SourceId="1" SourceUrl="http://121.40.79.86:8777/AdminService/SystemManagerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SystemManagerService3.xsd" MetadataType="Schema" ID="d6b2569e-3978-48e6-bb07-90be2cfbe1fe" SourceId="1" SourceUrl="http://121.40.79.86:8777/AdminService/SystemManagerService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

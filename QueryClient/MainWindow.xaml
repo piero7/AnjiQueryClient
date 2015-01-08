@@ -157,6 +157,7 @@
                                                        Header="12位彩码查询服务"
                                                        Click="ToggleSwitch_Click"
                                        />
+                                <Button Content="Duboious" Command="{Binding GetDubious}"></Button>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" Width="auto" Margin="10,10,20,0" MaxWidth="500" MinWidth="300" HorizontalAlignment="Left">
                                 <StackPanel.Resources>

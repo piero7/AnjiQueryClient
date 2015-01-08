@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.LogService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.LogService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8777/AdminService/LogService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" />
+  <xs:import schemaLocation="http://121.40.79.86:8777/AdminService/LogService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.Log" />
   <xs:complexType name="SystemLogQueryArgs">
     <xs:sequence>
       <xs:element minOccurs="0" name="eDate" type="xs:dateTime" />

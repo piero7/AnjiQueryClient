@@ -19,16 +19,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:7778/InfoManagerService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://121.40.79.86:7778/InfoManagerService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="InfoManagerService5.xsd" MetadataType="Schema" ID="0592cccf-2d5a-42f7-b509-ae8730f950ff" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?xsd=xsd2" />
-    <MetadataFile FileName="InfoManagerService1.wsdl" MetadataType="Wsdl" ID="e87941ff-ffb1-4aca-8001-5bba9badce9c" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?wsdl" />
-    <MetadataFile FileName="InfoManagerService51.xsd" MetadataType="Schema" ID="b0b89c83-2f58-4396-8bdc-accc997c46c9" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?xsd=xsd4" />
-    <MetadataFile FileName="InfoManagerService52.xsd" MetadataType="Schema" ID="b58a31b5-933e-4df7-8014-c64a1b9dbbe5" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?xsd=xsd3" />
-    <MetadataFile FileName="InfoManagerService1.disco" MetadataType="Disco" ID="812494ff-6da3-4127-9794-dcbb308f9370" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?disco" />
-    <MetadataFile FileName="InfoManagerService53.xsd" MetadataType="Schema" ID="44310a6f-435f-4022-b7d1-d2a205fd749e" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?xsd=xsd1" />
-    <MetadataFile FileName="InfoManagerService54.xsd" MetadataType="Schema" ID="5196cb52-59b7-42de-a5ae-2bf8f43f5bf9" SourceId="1" SourceUrl="http://localhost:7778/InfoManagerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="InfoManagerService.xsd" MetadataType="Schema" ID="8534f803-1963-4bba-8854-4c4fc3a98a56" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?xsd=xsd4" />
+    <MetadataFile FileName="InfoManagerService1.xsd" MetadataType="Schema" ID="6c02ba66-6747-4b62-8bc7-59cffcbc7d4b" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="InfoManagerService2.xsd" MetadataType="Schema" ID="59b99bc2-7fb5-4644-996d-7d22726318bf" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="InfoManagerService3.xsd" MetadataType="Schema" ID="52be2bb4-031d-457a-a62e-e0712dc7307f" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="InfoManagerService.disco" MetadataType="Disco" ID="fc8d93ea-d404-4574-bdc2-f8eb03fe9717" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?disco" />
+    <MetadataFile FileName="InfoManagerService.wsdl" MetadataType="Wsdl" ID="d6cd9a94-08b3-4805-bd3d-96c26f19f9b7" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?wsdl" />
+    <MetadataFile FileName="InfoManagerService4.xsd" MetadataType="Schema" ID="e2aa578f-c01b-4bfb-b6d2-d224f56b2656" SourceId="1" SourceUrl="http://121.40.79.86:7778/InfoManagerService.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

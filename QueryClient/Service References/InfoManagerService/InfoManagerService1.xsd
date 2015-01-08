@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.QueryModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AnjiSmart.Query.QueryModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:7778/InfoManagerService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="Firm">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:QueryTarget">
-        <xs:sequence>
-          <xs:element name="_x003C_SeriesList_x003E_k__BackingField" nillable="true" type="tns:ArrayOfSeries" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Firm" nillable="true" type="tns:Firm" />
+  <xs:import schemaLocation="http://121.40.79.86:7778/InfoManagerService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="QueryTarget">
     <xs:sequence>
       <xs:element name="_x003C_Flgs_x003E_k__BackingField" nillable="true" type="tns:ArrayOfFlg" />
@@ -106,6 +96,16 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="QueryMold" nillable="true" type="tns:QueryMold" />
+  <xs:complexType name="Firm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryTarget">
+        <xs:sequence>
+          <xs:element name="_x003C_SeriesList_x003E_k__BackingField" nillable="true" type="tns:ArrayOfSeries" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Firm" nillable="true" type="tns:Firm" />
   <xs:complexType name="ArrayOfSeries">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Series" nillable="true" type="tns:Series" />
