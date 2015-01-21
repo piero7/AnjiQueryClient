@@ -617,12 +617,12 @@ namespace QueryClient.ViewModel
 
             if (this.span % keepSpan == 0)
             {
-                //this.IsPhoneOnline = await d.CheckPhone();
-                //this.IsWebOnline = await d.CheckWeb();
-                //this.IsWeinxinOnline = await d.CheckWeixin();
-                //this.IsSmOnline = await d.CheckSm();
-                //this.Is4d4cOnline = await d.Check4d4c();
-                //this.IsOldCodeOnline = await d.CheckOldCode();
+                this.IsPhoneOnline = await d.CheckPhone();
+                this.IsWebOnline = await d.CheckWeb();
+                this.IsWeinxinOnline = await d.CheckWeixin();
+                this.IsSmOnline = await d.CheckSm();
+                this.Is4d4cOnline = await d.Check4d4c();
+                this.IsOldCodeOnline = await d.CheckOldCode();
             }
             if (this.span % this.checkSafeSpan == 0)
             {
